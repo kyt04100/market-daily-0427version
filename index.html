@@ -152,9 +152,22 @@ ol.news-pick li:last-child { border-bottom: none; }
 .news-impact {
     font-size: 9pt; color: var(--accent); margin-top: 2pt; font-weight: 600;
 }
+
+button.pdf-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    padding: 8px 14px; font-size: 10pt; font-weight: 700;
+    background: var(--accent); color: #fff; border: none; border-radius: 4px;
+    cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    font-family: inherit;
+}
+button.pdf-btn:hover { filter: brightness(1.1); }
+@media print {
+    .no-print { display: none !important; }
+}
 </style>
 </head>
 <body>
+<p><button class='pdf-btn no-print' onclick='window.print()' title='브라우저 인쇄 다이얼로그에서 "PDF로 저장" 선택'>PDF 다운로드</button></p>
 <h1>데일리 시장 스냅샷</h1>
 <p>2026-04-27 (Monday) · 자동 생성 · Sløk — Minimal</p>
 <h2>① 데이터 요약</h2>
@@ -185,26 +198,21 @@ ol.news-pick li:last-child { border-bottom: none; }
 
 <h2>② 시황 초안</h2>
 <h3>미국 (Nasdaq 중심)</h3>
-<p class="takeaway">나스닥은 1.63% 상승한 24,836.6에 마감하며 AI·반도체 주도의 위험선호를 다시 확인했다.</p>
-<p>한국·대만 증시 사상 최고치와 맞물린 글로벌 반도체 랠리가 기술주 매수를 자극했고, 연준의 금리 동결 유력 시나리오가 분위기를 뒷받침했다. 다만 다우는 0.16% 보합권에 머물러 지수 간 온도차가 드러났다. 미 10년물 금리는 4bp 상승한 4.34%로 단기 변동성이 확대됐고, 달러/원은 1,479.95원에서 보합 흐름이다. WTI는 1.51% 하락한 94.40달러에 그쳤지만, 호르무즈 해협 봉쇄 장기화로 브렌트가 배럴당 108.34달러까지 오르며 인플레이션 헤지 압력은 여전했다.</p>
+<p class="takeaway">나스닥이 1.63% 상승하며 24,836.6에 마감, 다우(-0.16%)가 보합권에 머문 가운데 기술주 중심 강세가 전개됐다.</p>
+<p>4월 FOMC 금리 동결 가능성이 부각되며 미 10년물 금리는 4bp 오른 4.34%로 단기 보합권을 지켰고, 달러 변동성 확대 우려가 같이 거론됐다. WTI는 94.4달러로 1.51% 하락했지만 미-이란 평화 회담 교착과 호르무즈 봉쇄 장기화가 유가 상방 압력을 유지시켰다. 영국 CBI 소매판매가 1980년대 초 이후 최대 감소폭(-68)을 기록하며 글로벌 스태그플레이션 우려가 부각됐다. 무디스의 중국 신용등급 전망 상향(부정적→안정적)이 위험선호를 일부 보강했다.</p>
 <h3>KOSPI</h3>
-<p class="takeaway">코스피는 2.15% 급등한 6,615.03으로 마감하며 외국인·기관 동반 순매수에 힘입은 반도체 주도의 강세장을 시현했다.</p>
-<p>외국인이 8,563억원, 기관이 1만1,349억원 순매수한 반면 개인은 1조9,758억원 순매도로 차익실현에 나섰다. 업종별로는 전기장비(+8.12%)와 통신장비(+4.74%), 디스플레이장비및부품(+4.31%)이 상위를 휩쓸었고, SK하이닉스가 5.73%, 삼성전자가 2.28%, SK스퀘어가 8.83% 오르며 시총 상위주가 지수를 견인했다. 한미반도체는 26.4% 급등하며 AI 낙관론에 따른 반도체 랠리를 상징했다. 상승 종목 496개 대 하락 360개로 폭도 양호했으며, MSCI EM 아시아의 사상 최고 월간 실적 전망이 외국인 자금 유입을 거들었다.</p>
+<p class="takeaway">KOSPI가 2.15% 급등한 6,615.03으로 마감하며 외국인·기관 동반 순매수에 큰 폭 상승했다.</p>
+<p>외국인 +8,563억, 기관 +1조1,349억 순매수로 개인(-1조9,758억) 매물을 모두 흡수했고, 상승 종목 496개가 하락 360개를 압도했다. SK하이닉스(+5.73%), 삼성전자(+2.28%), SK스퀘어(+8.83%) 등 반도체·IT 대형주가 지수를 견인했고 한미반도체는 +26.4% 급등했다. 업종별로는 전기장비(+8.12%), 통신장비(+4.74%), 디스플레이장비및부품(+4.31%)이 상위를, 무선통신서비스(-1.73%)·복합유틸리티(-1.67%)가 하위를 차지했다. 무디스의 중국 전망 상향이 대중 수출주에 우호적으로 작용한 가운데, CATL의 50억 달러 H주 공모 부담으로 LG에너지솔루션은 -3.53% 하락했다. 원/달러는 1,479.95원 보합, 미 금리 4.34% 단기 안정이 외국인 자금 유입 환경을 지지했다.</p>
 <h3>KOSDAQ</h3>
-<p class="takeaway">코스닥은 1.86% 상승한 1,226.18에 마감했지만 수급 구조는 코스피와 달리 외국인 매도 주도로 갈렸다.</p>
-<p>외국인이 1,722억원 순매도한 가운데 기관이 849억원, 개인이 1,418억원을 순매수하며 지수를 떠받쳤다. 티이엠씨·서울바이오시스·동아엘텍·제룡산업 등이 가격제한폭까지 오르며 중소형 반도체·소재주 모멘텀을 이어갔고, 상승 912 대 하락 683으로 종목별 온기가 폭넓게 확산됐다. 반면 인터넷과카탈로그소매(-3.62%), 무선통신서비스(-1.73%), 창업투자(-1.71%) 업종은 하락했다. CATL의 홍콩 50억 달러 H주 북빌딩 개시 소식이 글로벌 2차전지 수급 부담으로 작용해 LG에너지솔루션이 3.53% 하락한 점도 코스닥 2차전지 관련주 변동성 확대 배경이었다.</p>
+<p class="takeaway">KOSDAQ은 1.86% 상승한 1,226.18로 마감했지만 외국인은 -1,722억 순매도로 매도를 주도했다.</p>
+<p>기관(+849억)과 개인(+1,418억)이 매수를 받쳐 상승 912 대 하락 683으로 종목 폭이 양호했다. 티이엠씨·서울바이오시스·쏘닉스·동아엘텍·제룡산업이 나란히 상한가(+29.9%대)를 기록하며 중소형 테마 강세가 두드러졌다. 전기장비(+8.12%)·통신장비(+4.74%) 중심의 KOSPI 강세 흐름이 동반된 가운데 인터넷과카탈로그소매(-3.62%)·창업투자(-1.71%)는 약세를 보였다. CATL의 H주 공모가 2차전지 경쟁 부담으로 작용했지만 반도체·전력장비 모멘텀이 지수 방어를 이끌었다.</p>
 
 <h2>③ 핵심 뉴스 5건</h2>
-<ol class="news-pick"><li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/114119">미-이란 평화 회담 교착 상태 속 브렌트유 선물 3달러 상승, 배럴당 108.34달러 기록</a></div><div class="news-summary">미-이란 평화 회담이 교착되고 호르무즈 해협 봉쇄가 장기화되며 브렌트유가 3달러 상승, 배럴당 108.34달러를 기록했다.</div><div class="news-impact">→ 에너지주·인플레이션 헤지자산: 상승 / 항공·소비재: 비용 부담 확대</div></li>
-<li><div class="news-head"><span class="bucket">2차전지</span> <a class="news-title" href="https://saveticker.com/app/news/114161">[2보] 중국 배터리 제조업체 CATL, 50억 달러 규모 홍콩 주식 공모 개시…텀 시트</a></div><div class="news-summary">세계 최대 배터리 제조사 CATL이 홍콩에서 최대 50억 달러 규모의 H주 가속화 북빌딩을 개시했다.</div><div class="news-impact">→ 글로벌 2차전지주: 수급 부담 / 국내 LG엔솔·삼성SDI: 동반 변동성 확대</div></li>
-<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/114123">[이머징] 한국·대만 증시, 반도체 강세에 사상 최고치 마감</a></div><div class="news-summary">한국·대만 증시가 AI 낙관론에 따른 반도체 랠리로 사상 최고치 마감, MSCI EM 아시아는 1999년 6월 이후 최고 월간 실적 전망이다.</div><div class="news-impact">→ 코스피·반도체 대형주(삼성전자·SK하이닉스·TSMC): 상승 모멘텀</div></li>
-<li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://saveticker.com/app/news/114184">연준, 금리 동결 가능성…파월 의장, 마지막 회의 준비</a></div><div class="news-summary">연준은 유가 충격 속 이번 회의에서 금리 동결이 유력하며, 파월 의장은 마지막 회의를 준비 중이다. 워시 인준 절차 가능성도 거론된다.</div><div class="news-impact">→ 미 국채금리: 단기 변동성 확대 / 달러: 보합 압력</div></li>
-<li><div class="news-head"><span class="bucket">지정학</span> <a class="news-title" href="https://saveticker.com/app/news/114169">무디스, 중국 신용등급 전망 &#x27;부정적&#x27;에서 &#x27;안정적&#x27;으로 상향 조정, A1 등급 유지</a></div><div class="news-summary">무디스가 중국 신용등급 전망을 &#x27;부정적&#x27;에서 &#x27;안정적&#x27;으로 상향, A1 등급은 유지했다. 무역·지정학 도전에도 회복력 있다는 평가다.</div><div class="news-impact">→ 중국·홍콩 증시: 우호적 / 위안화·아시아 신흥국 통화: 강세 압력</div></li></ol>
-
-<h2>④ 주간 금융시장 동향</h2>
-<p class="takeaway">이번 주 글로벌 증시는 AI·반도체 랠리와 유가 급등이 동시에 작동하며 한국·미국 모두 위험자산 중심의 강세 흐름을 보였다.</p>
-<p>코스피는 5일간 +4.58% 급등해 6,615선까지 올라섰고 외국인·기관이 동반 순매수에 나서며 SK하이닉스(+5.7%), 한미반도체(+26.4%) 등 반도체 대형주가 지수 상승을 견인했다. 이는 한국·대만 증시가 사상 최고치를 경신했다는 뉴스 흐름과 맞물려 AI 낙관론이 이머징 아시아 전반의 자금 유입으로 확산된 결과로 해석된다. 미국 증시는 나스닥이 5일 +2.37%로 반도체·AI 모멘텀을 공유했으나 S&amp;P500은 +0.55%에 그쳤고 다우는 보합권에 머물러, 강세가 기술주에 편중된 양상이 뚜렷했다. 그 배경에는 미-이란 회담 교착과 호르무즈 해협 봉쇄 장기화로 WTI가 5일 +12.6% 급등해 94달러대까지 치솟으며 항공·소비재 등 비용 민감 업종의 부담이 확대된 점이 있다. 유가 충격은 인플레이션 재점화 우려로 이어져 미 10년물 금리가 4.34%로 +4bp 상승했고, 연준이 이번 회의에서 동결 가능성이 유력하다는 관측 속에 파월 의장의 마지막 회의·후임 인준 이슈가 단기 금리 변동성을 키웠다. 원/달러 환율은 1,479원대에서 +0.13%의 제한적 움직임에 그쳤는데, 무디스가 중국 신용등급 전망을 &#x27;안정적&#x27;으로 상향하며 위안화·아시아 통화에 강세 압력이 유입된 점이 원화 약세를 완충했다. 한편 코스닥은 +1.86%로 상대적으로 부진했는데 외국인이 매도 주도(-1,722억)에 나섰고, CATL의 50억 달러 규모 홍콩 공모 개시 소식에 LG에너지솔루션(-3.5%) 등 2차전지주의 수급 부담이 부각된 영향이 컸다. 결과적으로 한 주 시장은 &#x27;AI·반도체 강세 + 유가발 인플레 경계 + 금리 상방 압력&#x27;이라는 세 축이 동시에 작용한 가운데, 업종·지역별 차별화가 심화된 한 주로 정리된다.</p>
-<table class="snapshot"><thead><tr><th class="asset">자산</th><th>최근값</th><th>5D %</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,475.63</td><td class="pos">+4.58%</td></tr><tr><td class="asset">Nasdaq</td><td>27,303.67</td><td class="pos">+2.37%</td></tr><tr><td class="asset">S&amp;P 500</td><td>7,165.08</td><td class="pos">+0.55%</td></tr><tr><td class="asset">USD/KRW</td><td>1,479.95</td><td class="pos">+0.14%</td></tr><tr><td class="asset">WTI</td><td>94.40</td><td class="pos">+12.58%</td></tr></tbody></table>
+<ol class="news-pick"><li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/114164">유가, 미국-이란 평화 회담 교착에 상승세...</a></div><div class="news-summary">미-이란 평화 회담 재개 노력이 교착 상태에 빠지고 호르무즈 해협 봉쇄가 장기화되며 유가 상승. 이란은 파키스탄 통한 우회로 모색 중.</div><div class="news-impact">→ 국제유가/에너지주: 상승, 항공·소비재: 마진 압박</div></li>
+<li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://saveticker.com/app/news/114184">연준, 금리 동결 가능성…파월 의장, 마지막 회의 준비</a></div><div class="news-summary">4월 FOMC에서 연준 금리 동결 예상. 유가 충격 속 인상 시그널 여부 주목. 파월 수사 종료 후 워시 인준 절차 가능성.</div><div class="news-impact">→ 미 국채금리: 단기 보합, 달러: 변동성 확대</div></li>
+<li><div class="news-head"><span class="bucket">지정학</span> <a class="news-title" href="https://saveticker.com/app/news/114169">무디스, 중국 신용등급 전망 &#x27;부정적&#x27;에서 &#x27;안정적&#x27;으로 상향 조정, A1 등급 유지</a></div><div class="news-summary">무디스가 중국 신용등급 전망을 &#x27;안정적&#x27;으로 상향. 무역·지정학적 도전에도 경제 회복력과 지방정부 부채 통제력 인정. A1 등급은 유지.</div><div class="news-impact">→ 중국·홍콩 증시: 위험선호 확대, 한국 대중 수출주: 우호적</div></li>
+<li><div class="news-head"><span class="bucket">2차전지</span> <a class="news-title" href="https://saveticker.com/app/news/114161">중국 EV 배터리 제조사 CATL, 50억 달러 규모 홍콩 주식 매각 개시</a></div><div class="news-summary">CATL이 종가 대비 3.5~7.0% 할인된 50억 달러 규모 H주 공모 개시. 자금은 글로벌 확장, 탄소 중립, R&amp;D에 투입.</div><div class="news-impact">→ 2차전지 섹터(LG엔솔/삼성SDI): 경쟁 강화 부담, 단기 매물 압력</div></li>
+<li><div class="news-head"><span class="bucket">물가</span> <a class="news-title" href="https://saveticker.com/app/news/114175">영국 소매판매 40여 년 만에 최대 폭 감소…CBI 조사 결과</a></div><div class="news-summary">CBI 도소매 동향 -68(예상 -40, 이전 -52). 이란 전쟁발 인플레이션 우려로 가계 지출 위축, 1980년대 초 이후 최대 감소폭.</div><div class="news-impact">→ 파운드/유럽 소비주: 약세, 글로벌 스태그플레이션 우려 부각</div></li></ol>
 
 <div class='footer'>본 리포트는 자동 수집 데이터 + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
 </body>
