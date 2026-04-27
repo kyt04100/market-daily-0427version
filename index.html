@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-04-27_daily · Sløk — Minimal</title>
+<style>
+:root {
+    --page-bg: #f0f0f0; --bg: #ffffff; --ink: #1a1a1a; --muted: #6b7280;
+    --line: #e5e7eb; --pos: #1a7a3e; --neg: #c0392b; --accent: #1f4e79;
+}
+body {
+    font-family: "Helvetica Neue", "Arial", "Malgun Gothic", sans-serif;
+    font-weight: 400;
+}
+h1 { font-size: 26pt; font-weight: 800; letter-spacing: -0.02em; }
+h1 + p { color: var(--muted); font-size: 9.5pt; margin-bottom: 18mm; }
+h2 {
+    font-size: 11pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    border-top: 2px solid var(--ink); padding-top: 8pt; margin-top: 14mm;
+}
+h3 { font-size: 9pt; font-weight: 700; color: var(--muted); text-transform: uppercase;
+     letter-spacing: 0.04em; margin-top: 8mm; }
+.takeaway { font-size: 11pt; font-weight: 600; margin: 0 0 6pt; }
+
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html { background: var(--page-bg); margin: 0; padding: 0; }
+body {
+    background: var(--bg);
+    color: var(--ink);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 6mm auto 14mm;
+    padding: 18mm 22mm 22mm;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 2px 30px rgba(0,0,0,0.18);
+}
+h1 { margin: 0 0 4pt; }
+h1 + p { margin-top: 0; }
+p, li { font-size: 10.5pt; }
+ul { padding-left: 5mm; margin: 2pt 0 6pt; }
+li { margin: 1.5pt 0; }
+strong { font-weight: 700; }
+em { font-style: normal; color: var(--muted); }
+hr { border: none; border-top: 1px solid var(--line); margin: 10mm 0; }
+
+img.chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 2mm 0 3mm;
+}
+
+table.snapshot {
+    border-collapse: collapse;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+    font-size: 9.5pt;
+    margin: 3mm 0 5mm;
+}
+table.snapshot th, table.snapshot td {
+    padding: 5pt 8pt;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    white-space: nowrap;
+}
+table.snapshot th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+}
+table.snapshot td.asset, table.snapshot th.asset { text-align: left; font-weight: 600; }
+table.snapshot td.pos { color: var(--pos); }
+table.snapshot td.neg { color: var(--neg); }
+table.snapshot td.neutral { color: var(--muted); }
+
+ul.news-24h { list-style: none; padding-left: 0; }
+ul.news-24h li {
+    padding: 5pt 0; border-bottom: 1px dotted var(--line);
+    font-size: 9.5pt;
+}
+ul.news-24h li:last-child { border-bottom: none; }
+.news-when {
+    display: inline-block; min-width: 12mm;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted); font-size: 8.5pt; margin-right: 4pt;
+}
+.news-src { color: var(--muted); font-size: 8.5pt; }
+a.news-title { font-weight: 600; }
+.news-summary {
+    margin: 2pt 0 0 16mm;
+    font-size: 9pt; color: var(--ink); line-height: 1.4;
+    border-left: 2px solid var(--line); padding-left: 6pt;
+}
+
+.news-brief {
+    background: rgba(0,0,0,0.025);
+    border-left: 3px solid var(--accent, var(--ink));
+    padding: 8pt 12pt 4pt;
+    margin: 0 0 8mm;
+}
+.news-brief h3 {
+    font-size: 10pt; text-transform: uppercase; letter-spacing: 0.05em;
+    margin: 6pt 0 3pt; color: var(--accent, var(--ink));
+}
+.news-brief h3:first-child { margin-top: 0; }
+.news-brief p { font-size: 10pt; margin: 2pt 0; }
+.news-brief ul { padding-left: 4mm; margin: 2pt 0 4pt; }
+.news-brief li { font-size: 9.5pt; margin: 2pt 0; }
+.news-brief strong { color: var(--accent, var(--ink)); }
+
+.footer {
+    margin-top: 14mm; padding-top: 4mm;
+    border-top: 1px solid var(--line);
+    font-size: 8pt; color: var(--muted);
+}
+
+@media print {
+    html, body { background: var(--bg); }
+    body { margin: 0; box-shadow: none; }
+}
+</style>
+
+<style>
+p.muted-note { color: var(--muted); font-size: 8.5pt; margin: -2mm 0 4mm; }
+ol.news-pick { list-style: none; padding-left: 0; counter-reset: nv; }
+ol.news-pick li {
+    counter-increment: nv;
+    padding: 6pt 0 8pt; border-bottom: 1px solid var(--line);
+    position: relative;
+}
+ol.news-pick li::before {
+    content: counter(nv);
+    position: absolute; left: 0; top: 6pt;
+    font-weight: 800; color: var(--accent); font-size: 12pt;
+    width: 8mm;
+}
+ol.news-pick li > div { margin-left: 9mm; }
+.news-head { font-size: 10pt; line-height: 1.4; }
+.bucket {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 8pt; font-weight: 700; padding: 1pt 6pt; border-radius: 2pt;
+    margin-right: 6pt; vertical-align: middle;
+    text-transform: uppercase; letter-spacing: 0.04em;
+}
+ol.news-pick li:last-child { border-bottom: none; }
+.news-summary { font-size: 9.5pt; color: var(--ink); margin-top: 3pt; }
+.news-impact {
+    font-size: 9pt; color: var(--accent); margin-top: 2pt; font-weight: 600;
+}
+</style>
+</head>
+<body>
+<h1>데일리 시장 스냅샷</h1>
+<p>2026-04-27 (Monday) · 자동 생성 · Sløk — Minimal</p>
+<h2>① 데이터 요약</h2>
+<h3>지수</h3>
+<table class="snapshot"><thead><tr><th class="asset">지수</th><th>종가</th><th>전일대비</th><th>%</th><th>방향</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,615.03</td><td>+139.40</td><td class="pos">+2.15%</td><td class='neutral'>큰 폭 상승</td></tr><tr><td class="asset">KOSDAQ</td><td>1,226.18</td><td>+22.34</td><td class="pos">+1.86%</td><td class='neutral'>상승</td></tr><tr><td class="asset">Nasdaq</td><td>24,836.60</td><td>+398.09</td><td class="pos">+1.63%</td><td class='neutral'>상승</td></tr><tr><td class="asset">Dow Jones</td><td>49,230.71</td><td>+79.61</td><td class="neg">-0.16%</td><td class='neutral'>보합</td></tr></tbody></table>
+
+<h3>외국인·기관·개인 수급</h3>
+<table class="snapshot"><thead><tr><th class="asset">시장</th><th>외국인</th><th>기관</th><th>개인</th><th>방향</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td class="pos">+8,563</td><td class="pos">+11,349</td><td class="neg">-19,758</td><td class='neutral'>외국인+기관 동반 순매수</td></tr><tr><td class="asset">KOSDAQ</td><td class="neg">-1,722</td><td class="pos">+849</td><td class="pos">+1,418</td><td class='neutral'>외국인 매도 주도</td></tr></tbody></table>
+<p class="muted-note">단위: 억원 · +순매수 / −순매도</p>
+
+<h3>업종 Top / Bottom</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승 업종</th><th>%</th><th class="asset">하락 업종</th><th>%</th></tr></thead><tbody><tr><td class="asset">전기장비</td><td class="pos">+8.12%</td><td class="asset">인터넷과카탈로그소매</td><td class="neg">-3.62%</td></tr><tr><td class="asset">판매업체</td><td class="pos">+7.44%</td><td class="asset">무선통신서비스</td><td class="neg">-1.73%</td></tr><tr><td class="asset">복합기업</td><td class="pos">+4.78%</td><td class="asset">창업투자</td><td class="neg">-1.71%</td></tr><tr><td class="asset">통신장비</td><td class="pos">+4.74%</td><td class="asset">복합유틸리티</td><td class="neg">-1.67%</td></tr><tr><td class="asset">디스플레이장비및부품</td><td class="pos">+4.31%</td><td class="asset">전기제품</td><td class="neg">-1.56%</td></tr></tbody></table>
+
+<h3>종목</h3>
+<h3>KOSPI 시총 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">삼성전자</td><td>224,500</td><td class="pos">+2.28%</td></tr><tr><td class="asset">SK하이닉스</td><td>1,292,000</td><td class="pos">+5.73%</td></tr><tr><td class="asset">삼성전자우</td><td>160,100</td><td class="pos">+4.16%</td></tr><tr><td class="asset">LG에너지솔루션</td><td>464,000</td><td class="neg">-3.53%</td></tr><tr><td class="asset">현대차</td><td>524,000</td><td class="pos">+2.14%</td></tr><tr><td class="asset">SK스퀘어</td><td>789,000</td><td class="pos">+8.83%</td></tr><tr><td class="asset">두산에너빌리티</td><td>128,900</td><td class="pos">+1.42%</td></tr><tr><td class="asset">한화에어로스페이스</td><td>1,454,000</td><td class="neg">-0.62%</td></tr><tr><td class="asset">HD현대중공업</td><td>673,000</td><td class="pos">+0.30%</td></tr><tr><td class="asset">삼성바이오로직스</td><td>1,509,000</td><td class="neg">-1.24%</td></tr></tbody></table>
+<h3>KOSPI 상승 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">진흥기업</td><td>1,327</td><td class="pos">+29.97%</td></tr><tr><td class="asset">SK증권우</td><td>14,970</td><td class="pos">+29.95%</td></tr><tr><td class="asset">포스코스틸리온</td><td>7,030</td><td class="pos">+29.94%</td></tr><tr><td class="asset">SK증권</td><td>4,845</td><td class="pos">+29.89%</td></tr><tr><td class="asset">한미반도체</td><td>373,500</td><td class="pos">+26.40%</td></tr></tbody></table>
+<h3>KOSPI 하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">한국ANKOR유전</td><td>82</td><td class="neg">-29.31%</td></tr><tr><td class="asset">키움 인버스 2X 전력 TOP5 ETN</td><td>5,470</td><td class="neg">-16.04%</td></tr><tr><td class="asset">키움 인버스 2X 반도체TOP10 ETN</td><td>7,340</td><td class="neg">-11.67%</td></tr><tr><td class="asset">하나 인버스 2X 반도체 ETN</td><td>7,095</td><td class="neg">-10.02%</td></tr><tr><td class="asset">미래에셋 인버스 2X 반도체 ETN</td><td>10,950</td><td class="neg">-9.91%</td></tr></tbody></table>
+<h3>KOSDAQ 상승 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">티이엠씨</td><td>16,340</td><td class="pos">+29.99%</td></tr><tr><td class="asset">서울바이오시스</td><td>5,960</td><td class="pos">+29.99%</td></tr><tr><td class="asset">쏘닉스</td><td>7,980</td><td class="pos">+29.97%</td></tr><tr><td class="asset">동아엘텍</td><td>14,620</td><td class="pos">+29.96%</td></tr><tr><td class="asset">제룡산업</td><td>10,850</td><td class="pos">+29.94%</td></tr></tbody></table>
+<h3>KOSDAQ 하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">선샤인푸드</td><td>145</td><td class="neg">-96.19%</td></tr><tr><td class="asset">BF랩스</td><td>395</td><td class="neg">-85.92%</td></tr><tr><td class="asset">이렘</td><td>336</td><td class="neg">-30.00%</td></tr><tr><td class="asset">THE CUBE&amp;</td><td>688</td><td class="neg">-20.00%</td></tr><tr><td class="asset">키움히어로제2호스팩</td><td>2,125</td><td class="neg">-17.48%</td></tr></tbody></table>
+
+<h3>매크로</h3>
+<table class="snapshot"><thead><tr><th class="asset">지표</th><th>값</th><th>변동</th><th>%</th><th>방향</th></tr></thead><tbody><tr><td class="asset">원/달러</td><td>1,479.95</td><td>+1.99</td><td class="pos">+0.13%</td><td class='neutral'>보합</td></tr><tr><td class="asset">미 10Y 금리</td><td>4.340%</td><td>+4.0bp</td><td class='neutral'>—</td><td class='neutral'>상승</td></tr><tr><td class="asset">WTI</td><td>94.40</td><td>-1.45</td><td class="neg">-1.51%</td><td class='neutral'>하락</td></tr></tbody></table>
+
+<h2>② 시황 초안</h2>
+<h3>미국 (Nasdaq 중심)</h3>
+<p class="takeaway">나스닥은 1.63% 상승한 24,836.6에 마감하며 AI·반도체 주도의 위험선호를 다시 확인했다.</p>
+<p>한국·대만 증시 사상 최고치와 맞물린 글로벌 반도체 랠리가 기술주 매수를 자극했고, 연준의 금리 동결 유력 시나리오가 분위기를 뒷받침했다. 다만 다우는 0.16% 보합권에 머물러 지수 간 온도차가 드러났다. 미 10년물 금리는 4bp 상승한 4.34%로 단기 변동성이 확대됐고, 달러/원은 1,479.95원에서 보합 흐름이다. WTI는 1.51% 하락한 94.40달러에 그쳤지만, 호르무즈 해협 봉쇄 장기화로 브렌트가 배럴당 108.34달러까지 오르며 인플레이션 헤지 압력은 여전했다.</p>
+<h3>KOSPI</h3>
+<p class="takeaway">코스피는 2.15% 급등한 6,615.03으로 마감하며 외국인·기관 동반 순매수에 힘입은 반도체 주도의 강세장을 시현했다.</p>
+<p>외국인이 8,563억원, 기관이 1만1,349억원 순매수한 반면 개인은 1조9,758억원 순매도로 차익실현에 나섰다. 업종별로는 전기장비(+8.12%)와 통신장비(+4.74%), 디스플레이장비및부품(+4.31%)이 상위를 휩쓸었고, SK하이닉스가 5.73%, 삼성전자가 2.28%, SK스퀘어가 8.83% 오르며 시총 상위주가 지수를 견인했다. 한미반도체는 26.4% 급등하며 AI 낙관론에 따른 반도체 랠리를 상징했다. 상승 종목 496개 대 하락 360개로 폭도 양호했으며, MSCI EM 아시아의 사상 최고 월간 실적 전망이 외국인 자금 유입을 거들었다.</p>
+<h3>KOSDAQ</h3>
+<p class="takeaway">코스닥은 1.86% 상승한 1,226.18에 마감했지만 수급 구조는 코스피와 달리 외국인 매도 주도로 갈렸다.</p>
+<p>외국인이 1,722억원 순매도한 가운데 기관이 849억원, 개인이 1,418억원을 순매수하며 지수를 떠받쳤다. 티이엠씨·서울바이오시스·동아엘텍·제룡산업 등이 가격제한폭까지 오르며 중소형 반도체·소재주 모멘텀을 이어갔고, 상승 912 대 하락 683으로 종목별 온기가 폭넓게 확산됐다. 반면 인터넷과카탈로그소매(-3.62%), 무선통신서비스(-1.73%), 창업투자(-1.71%) 업종은 하락했다. CATL의 홍콩 50억 달러 H주 북빌딩 개시 소식이 글로벌 2차전지 수급 부담으로 작용해 LG에너지솔루션이 3.53% 하락한 점도 코스닥 2차전지 관련주 변동성 확대 배경이었다.</p>
+
+<h2>③ 핵심 뉴스 5건</h2>
+<ol class="news-pick"><li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/114119">미-이란 평화 회담 교착 상태 속 브렌트유 선물 3달러 상승, 배럴당 108.34달러 기록</a></div><div class="news-summary">미-이란 평화 회담이 교착되고 호르무즈 해협 봉쇄가 장기화되며 브렌트유가 3달러 상승, 배럴당 108.34달러를 기록했다.</div><div class="news-impact">→ 에너지주·인플레이션 헤지자산: 상승 / 항공·소비재: 비용 부담 확대</div></li>
+<li><div class="news-head"><span class="bucket">2차전지</span> <a class="news-title" href="https://saveticker.com/app/news/114161">[2보] 중국 배터리 제조업체 CATL, 50억 달러 규모 홍콩 주식 공모 개시…텀 시트</a></div><div class="news-summary">세계 최대 배터리 제조사 CATL이 홍콩에서 최대 50억 달러 규모의 H주 가속화 북빌딩을 개시했다.</div><div class="news-impact">→ 글로벌 2차전지주: 수급 부담 / 국내 LG엔솔·삼성SDI: 동반 변동성 확대</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/114123">[이머징] 한국·대만 증시, 반도체 강세에 사상 최고치 마감</a></div><div class="news-summary">한국·대만 증시가 AI 낙관론에 따른 반도체 랠리로 사상 최고치 마감, MSCI EM 아시아는 1999년 6월 이후 최고 월간 실적 전망이다.</div><div class="news-impact">→ 코스피·반도체 대형주(삼성전자·SK하이닉스·TSMC): 상승 모멘텀</div></li>
+<li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://saveticker.com/app/news/114184">연준, 금리 동결 가능성…파월 의장, 마지막 회의 준비</a></div><div class="news-summary">연준은 유가 충격 속 이번 회의에서 금리 동결이 유력하며, 파월 의장은 마지막 회의를 준비 중이다. 워시 인준 절차 가능성도 거론된다.</div><div class="news-impact">→ 미 국채금리: 단기 변동성 확대 / 달러: 보합 압력</div></li>
+<li><div class="news-head"><span class="bucket">지정학</span> <a class="news-title" href="https://saveticker.com/app/news/114169">무디스, 중국 신용등급 전망 &#x27;부정적&#x27;에서 &#x27;안정적&#x27;으로 상향 조정, A1 등급 유지</a></div><div class="news-summary">무디스가 중국 신용등급 전망을 &#x27;부정적&#x27;에서 &#x27;안정적&#x27;으로 상향, A1 등급은 유지했다. 무역·지정학 도전에도 회복력 있다는 평가다.</div><div class="news-impact">→ 중국·홍콩 증시: 우호적 / 위안화·아시아 신흥국 통화: 강세 압력</div></li></ol>
+
+<h2>④ 주간 금융시장 동향</h2>
+<p class="takeaway">이번 주 글로벌 증시는 AI·반도체 랠리와 유가 급등이 동시에 작동하며 한국·미국 모두 위험자산 중심의 강세 흐름을 보였다.</p>
+<p>코스피는 5일간 +4.58% 급등해 6,615선까지 올라섰고 외국인·기관이 동반 순매수에 나서며 SK하이닉스(+5.7%), 한미반도체(+26.4%) 등 반도체 대형주가 지수 상승을 견인했다. 이는 한국·대만 증시가 사상 최고치를 경신했다는 뉴스 흐름과 맞물려 AI 낙관론이 이머징 아시아 전반의 자금 유입으로 확산된 결과로 해석된다. 미국 증시는 나스닥이 5일 +2.37%로 반도체·AI 모멘텀을 공유했으나 S&amp;P500은 +0.55%에 그쳤고 다우는 보합권에 머물러, 강세가 기술주에 편중된 양상이 뚜렷했다. 그 배경에는 미-이란 회담 교착과 호르무즈 해협 봉쇄 장기화로 WTI가 5일 +12.6% 급등해 94달러대까지 치솟으며 항공·소비재 등 비용 민감 업종의 부담이 확대된 점이 있다. 유가 충격은 인플레이션 재점화 우려로 이어져 미 10년물 금리가 4.34%로 +4bp 상승했고, 연준이 이번 회의에서 동결 가능성이 유력하다는 관측 속에 파월 의장의 마지막 회의·후임 인준 이슈가 단기 금리 변동성을 키웠다. 원/달러 환율은 1,479원대에서 +0.13%의 제한적 움직임에 그쳤는데, 무디스가 중국 신용등급 전망을 &#x27;안정적&#x27;으로 상향하며 위안화·아시아 통화에 강세 압력이 유입된 점이 원화 약세를 완충했다. 한편 코스닥은 +1.86%로 상대적으로 부진했는데 외국인이 매도 주도(-1,722억)에 나섰고, CATL의 50억 달러 규모 홍콩 공모 개시 소식에 LG에너지솔루션(-3.5%) 등 2차전지주의 수급 부담이 부각된 영향이 컸다. 결과적으로 한 주 시장은 &#x27;AI·반도체 강세 + 유가발 인플레 경계 + 금리 상방 압력&#x27;이라는 세 축이 동시에 작용한 가운데, 업종·지역별 차별화가 심화된 한 주로 정리된다.</p>
+<table class="snapshot"><thead><tr><th class="asset">자산</th><th>최근값</th><th>5D %</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,475.63</td><td class="pos">+4.58%</td></tr><tr><td class="asset">Nasdaq</td><td>27,303.67</td><td class="pos">+2.37%</td></tr><tr><td class="asset">S&amp;P 500</td><td>7,165.08</td><td class="pos">+0.55%</td></tr><tr><td class="asset">USD/KRW</td><td>1,479.95</td><td class="pos">+0.14%</td></tr><tr><td class="asset">WTI</td><td>94.40</td><td class="pos">+12.58%</td></tr></tbody></table>
+
+<div class='footer'>본 리포트는 자동 수집 데이터 + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
+</body>
+</html>
