@@ -127,6 +127,7 @@ a.news-title { font-weight: 600; }
 
 <style>
 p.muted-note { color: var(--muted); font-size: 8.5pt; margin: -2mm 0 4mm; }
+
 ol.news-pick { list-style: none; padding-left: 0; counter-reset: nv; }
 ol.news-pick li {
     counter-increment: nv;
@@ -148,10 +149,46 @@ ol.news-pick li > div { margin-left: 9mm; }
     text-transform: uppercase; letter-spacing: 0.04em;
 }
 ol.news-pick li:last-child { border-bottom: none; }
-.news-summary { font-size: 9.5pt; color: var(--ink); margin-top: 3pt; }
+.news-summary { font-size: 9.5pt; color: var(--ink); margin-top: 3pt;
+                margin-left: 0; padding-left: 0; border-left: none; }
 .news-impact {
     font-size: 9pt; color: var(--accent); margin-top: 2pt; font-weight: 600;
 }
+
+.macro-line {
+    background: rgba(0,0,0,0.025);
+    border-left: 3px solid var(--accent);
+    padding: 6pt 12pt;
+    margin: 3mm 0 5mm;
+    font-size: 10pt;
+    font-variant-numeric: tabular-nums;
+}
+.macro-line strong { color: var(--accent); }
+
+.context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin: 3mm 0 5mm;
+}
+.context-grid .box {
+    border: 1px solid var(--line);
+    padding: 8pt 12pt;
+}
+.context-grid .box h4 {
+    font-size: 9pt; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.04em; margin: 0 0 4pt; color: var(--accent);
+}
+.context-grid .box ul { padding-left: 4mm; margin: 0; }
+.context-grid .box li { font-size: 9.5pt; }
+
+ul.rss-list { list-style: none; padding-left: 0; }
+ul.rss-list li {
+    padding: 4pt 0; border-bottom: 1px dotted var(--line);
+    font-size: 9.5pt;
+}
+ul.rss-list li:last-child { border-bottom: none; }
+ul.rss-list a { font-weight: 600; }
 
 button.pdf-btn {
     position: fixed; top: 16px; right: 16px; z-index: 1000;
@@ -169,10 +206,26 @@ button.pdf-btn:hover { filter: brightness(1.1); }
 <body>
 <p><button class='pdf-btn no-print' onclick='window.print()' title='브라우저 인쇄 다이얼로그에서 "PDF로 저장" 선택'>PDF 다운로드</button></p>
 <h1>데일리 시장 스냅샷</h1>
-<p>2026-04-29 (Wednesday) · 자동 생성 · Sløk — Minimal</p>
-<h2>① 데이터 요약</h2>
-<h3>지수</h3>
-<table class="snapshot"><thead><tr><th class="asset">지수</th><th>종가</th><th>전일대비</th><th>%</th><th>방향</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,648.81</td><td>+7.79</td><td class="pos">+0.12%</td><td class='neutral'>보합</td></tr><tr><td class="asset">KOSDAQ</td><td>1,213.04</td><td>+2.54</td><td class="neg">-0.21%</td><td class='neutral'>보합</td></tr><tr><td class="asset">Nasdaq</td><td>24,663.80</td><td>+223.30</td><td class="neg">-0.90%</td><td class='neutral'>약보합</td></tr><tr><td class="asset">Dow Jones</td><td>49,141.93</td><td>+25.86</td><td class="neg">-0.05%</td><td class='neutral'>보합</td></tr></tbody></table>
+<p>2026-04-29 (Wednesday) · 자동 생성 · Sløk — Minimal · 데일리 + 위클리 통합</p>
+<h2>① 헤드라인 스냅샷 — 다기간 수익률</h2>
+<table class="snapshot"><thead><tr><th class="asset">자산</th><th>종가</th><th>1D</th><th>1W</th><th>1M</th><th>3M</th><th>YTD</th><th>1Y</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,616.22</td><td class="neg">-0.37%</td><td class="pos">+3.09%</td><td class="pos">+25.37%</td><td class="pos">+26.72%</td><td class="pos">+53.52%</td><td class="pos">+157.90%</td></tr><tr><td class="asset">KOSDAQ</td><td>1,217.11</td><td class="pos">+0.13%</td><td class="pos">+3.05%</td><td class="pos">+9.94%</td><td class="pos">+4.53%</td><td class="pos">+28.72%</td><td class="pos">+67.54%</td></tr><tr><td class="asset">S&amp;P 500</td><td>7,138.80</td><td class="neg">-0.49%</td><td class="pos">+1.06%</td><td class="pos">+12.09%</td><td class="pos">+2.30%</td><td class="pos">+4.09%</td><td class="pos">+29.12%</td></tr><tr><td class="asset">NASDAQ 100</td><td>27,029.01</td><td class="neg">-1.01%</td><td class="pos">+2.08%</td><td class="pos">+16.84%</td><td class="pos">+3.87%</td><td class="pos">+7.23%</td><td class="pos">+39.13%</td></tr><tr><td class="asset">VIX</td><td>17.83</td><td class="neg">-1.05%</td><td class="neg">-8.56%</td><td class="neg">-42.58%</td><td class="pos">+9.05%</td><td class="pos">+22.88%</td><td class="neg">-29.11%</td></tr><tr><td class="asset">EAFE (해외선진)</td><td>100.96</td><td class="neg">-0.41%</td><td class="neg">-0.66%</td><td class="pos">+7.63%</td><td class="neg">-0.05%</td><td class="pos">+4.04%</td><td class="pos">+19.23%</td></tr><tr><td class="asset">EM (신흥국)</td><td>62.99</td><td class="neg">-1.02%</td><td class="pos">+1.19%</td><td class="pos">+14.11%</td><td class="pos">+3.69%</td><td class="pos">+12.00%</td><td class="pos">+44.70%</td></tr></tbody></table>
+
+<div class="macro-line">환율 <strong>1,473.00</strong> (-0.11%) &middot; 美 10Y <strong>4.350%</strong> (+4.0bp) &middot; 美 2s10s <strong>+57bp</strong> (정상) &middot; WTI <strong>99.12</strong> (+2.85%)</div>
+
+<h2>② 시황 초안</h2>
+<p class="muted-note">기준: 직전 거래일 (20260429) 종가</p>
+<h3>미국 (Nasdaq 중심)</h3>
+<p class="takeaway">미국 증시는 빅테크 실적 경계와 AI 투자 회수 우려가 부각되며 나스닥이 0.9% 하락 마감했다.</p>
+<p>주요 빅테크 실적 발표를 앞두고 AI 대규모 투자의 수익 전환 가능성에 대한 의구심이 부각되며 기술주 전반이 조정 압력을 받았다. 미 상무부의 화홍·화리 마이크로일렉트로닉스 장비 선적 중단 지시로 미중 반도체 공급망 변동성이 확대된 점도 투자심리를 위축시켰다. 다만 씨게이트가 AI 인프라 수요 호조에 힘입어 시장 예상을 상회하는 가이던스를 제시하며 스토리지·메모리 관련주 일부에 매수세가 유입됐다. 매크로 측면에서는 WTI가 2.85% 급등해 99.12달러로 마감했고, 미 10년물 금리는 4bp 상승한 4.35%를 기록해 기술주 밸류에이션 부담을 가중시켰다. 달러는 연준 결정과 중동 지정학 변수 속 안정세를 보이며 다우는 0.05% 하락에 그쳤다.</p>
+<h3>KOSPI</h3>
+<p class="takeaway">KOSPI는 외국인 매도 주도 속에서도 기관 매수가 받쳐주며 7.79포인트(0.12%) 오른 6,648.81로 보합 마감했다.</p>
+<p>외국인이 2,954억원 순매도한 반면 기관이 2,573억원, 개인이 745억원 순매수하며 지수를 방어했다. 업종별로는 WTI 2.85% 급등에 연동된 석유와가스(+3.98%)와 전기장비(+3.70%), 레저용장비와제품(+5.54%)이 상승을 주도했고, 창업투자(-7.52%)와 부동산(-3.09%), 비철금속(-2.38%)은 약세를 보였다. 시총 상위에서는 한화에어로스페이스(+1.94%), HD현대중공업(+3.30%), 두산에너빌리티(+0.86%) 등 방산·조선·전력기기가 강세였고, 삼성전자(-0.34%)·삼성바이오로직스(-0.80%)는 약세였다. 상승 322종목·하락 513종목으로 종목별 차별화가 뚜렷했으며, 미 기술주 약세와 미중 반도체 장비 규제 뉴스가 외국인 수급에 부담으로 작용했다.</p>
+<h3>KOSDAQ</h3>
+<p class="takeaway">KOSDAQ은 외국인 순매수 주도에도 종목 차별화 속에 2.54포인트(-0.21%) 내린 1,213.04로 약보합 마감했다.</p>
+<p>외국인이 243억원 순매수, 개인도 128억원 순매수한 반면 기관이 42억원 순매도하며 수급 균형을 이뤘다. 다만 상승 550종목·하락 1,027종목으로 하락 종목이 두 배에 달해 시장 폭은 부진했다. 채비(+125.61%), 제일일렉트릭(+30.00%), KBI메탈(+29.97%), 폴라리스AI(+29.96%) 등 개별 테마주에 매수세가 집중된 반면 아주IB투자(-18.98%), LB세미콘(-10.55%) 등은 큰 폭 조정을 받았다. 창업투자 업종이 -7.52%로 가장 부진했으며, 미 빅테크 실적 경계와 미중 반도체 공급망 규제 이슈가 중소형 기술주 투자심리를 짓눌렀다.</p>
+
+<h2>③ 수급 · 업종 · 종목</h2>
+<p class="muted-note">기준: 20260429 마감</p>
 
 <h3>외국인·기관·개인 수급</h3>
 <table class="snapshot"><thead><tr><th class="asset">시장</th><th>외국인</th><th>기관</th><th>개인</th><th>방향</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td class="neg">-2,954</td><td class="pos">+2,573</td><td class="pos">+745</td><td class='neutral'>외국인 매도 주도</td></tr><tr><td class="asset">KOSDAQ</td><td class="pos">+243</td><td class="neg">-42</td><td class="pos">+128</td><td class='neutral'>외국인 순매수 주도</td></tr></tbody></table>
@@ -181,39 +234,33 @@ button.pdf-btn:hover { filter: brightness(1.1); }
 <h3>업종 Top / Bottom</h3>
 <table class="snapshot"><thead><tr><th class="asset">상승 업종</th><th>%</th><th class="asset">하락 업종</th><th>%</th></tr></thead><tbody><tr><td class="asset">레저용장비와제품</td><td class="pos">+5.54%</td><td class="asset">창업투자</td><td class="neg">-7.52%</td></tr><tr><td class="asset">석유와가스</td><td class="pos">+3.98%</td><td class="asset">부동산</td><td class="neg">-3.09%</td></tr><tr><td class="asset">전기장비</td><td class="pos">+3.70%</td><td class="asset">비철금속</td><td class="neg">-2.38%</td></tr><tr><td class="asset">판매업체</td><td class="pos">+2.80%</td><td class="asset">디스플레이패널</td><td class="neg">-2.33%</td></tr><tr><td class="asset">항공화물운송과물류</td><td class="pos">+2.50%</td><td class="asset">카드</td><td class="neg">-2.05%</td></tr></tbody></table>
 
-<h3>종목</h3>
 <h3>KOSPI 시총 상위</h3>
 <table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">삼성전자</td><td>221,250</td><td class="neg">-0.34%</td></tr><tr><td class="asset">SK하이닉스</td><td>1,306,000</td><td class="pos">+0.46%</td></tr><tr><td class="asset">삼성전자우</td><td>158,000</td><td class="neg">-1.25%</td></tr><tr><td class="asset">현대차</td><td>553,000</td><td class="neg">-0.36%</td></tr><tr><td class="asset">LG에너지솔루션</td><td>469,500</td><td class="neg">-0.53%</td></tr><tr><td class="asset">SK스퀘어</td><td>821,000</td><td class="pos">+1.23%</td></tr><tr><td class="asset">두산에너빌리티</td><td>128,900</td><td class="pos">+0.86%</td></tr><tr><td class="asset">한화에어로스페이스</td><td>1,422,000</td><td class="pos">+1.94%</td></tr><tr><td class="asset">HD현대중공업</td><td>689,000</td><td class="pos">+3.30%</td></tr><tr><td class="asset">삼성바이오로직스</td><td>1,492,000</td><td class="neg">-0.80%</td></tr></tbody></table>
-<h3>KOSPI 상승 상위</h3>
-<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">대원전선</td><td>12,100</td><td class="pos">+20.16%</td></tr><tr><td class="asset">이수화학</td><td>11,810</td><td class="pos">+20.51%</td></tr><tr><td class="asset">디와이에이</td><td>1,060</td><td class="pos">+18.04%</td></tr><tr><td class="asset">잇츠한불</td><td>13,110</td><td class="pos">+15.81%</td></tr><tr><td class="asset">대원전선우</td><td>7,640</td><td class="pos">+15.23%</td></tr></tbody></table>
-<h3>KOSPI 하락 상위</h3>
-<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">아주스틸</td><td>3,845</td><td class="neg">-13.60%</td></tr><tr><td class="asset">부국철강</td><td>2,995</td><td class="neg">-10.60%</td></tr><tr><td class="asset">KB 인버스 2X 밀 선물 ETN</td><td>30,270</td><td class="neg">-8.24%</td></tr><tr><td class="asset">진원생명과학</td><td>844</td><td class="neg">-7.86%</td></tr><tr><td class="asset">N2 인버스 레버리지 WTI원유 선물 ETN(H)</td><td>12</td><td class="neg">-7.69%</td></tr></tbody></table>
-<h3>KOSDAQ 상승 상위</h3>
-<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">채비</td><td>27,750</td><td class="pos">+125.61%</td></tr><tr><td class="asset">제일일렉트릭</td><td>16,640</td><td class="pos">+30.00%</td></tr><tr><td class="asset">KBI메탈</td><td>3,925</td><td class="pos">+29.97%</td></tr><tr><td class="asset">폴라리스AI</td><td>9,630</td><td class="pos">+29.96%</td></tr><tr><td class="asset">오로라</td><td>16,280</td><td class="pos">+29.93%</td></tr></tbody></table>
-<h3>KOSDAQ 하락 상위</h3>
-<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">아주IB투자</td><td>15,150</td><td class="neg">-18.98%</td></tr><tr><td class="asset">지아이에스</td><td>3,215</td><td class="neg">-10.20%</td></tr><tr><td class="asset">LB세미콘</td><td>6,020</td><td class="neg">-10.55%</td></tr><tr><td class="asset">금강철강</td><td>6,890</td><td class="neg">-9.46%</td></tr><tr><td class="asset">SV인베스트먼트</td><td>4,095</td><td class="neg">-9.80%</td></tr></tbody></table>
 
-<h3>매크로</h3>
-<table class="snapshot"><thead><tr><th class="asset">지표</th><th>값</th><th>변동</th><th>%</th><th>방향</th></tr></thead><tbody><tr><td class="asset">원/달러</td><td>1,473.00</td><td>-1.69</td><td class="neg">-0.11%</td><td class='neutral'>보합</td></tr><tr><td class="asset">미 10Y 금리</td><td>4.350%</td><td>+4.0bp</td><td class='neutral'>—</td><td class='neutral'>상승</td></tr><tr><td class="asset">WTI</td><td>99.12</td><td>+2.75</td><td class="pos">+2.85%</td><td class='neutral'>큰 폭 상승</td></tr></tbody></table>
+<h3>KOSPI 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody><tr><td class="asset">대원전선</td><td class="pos">+20.16%</td><td class="asset">아주스틸</td><td class="neg">-13.60%</td></tr><tr><td class="asset">이수화학</td><td class="pos">+20.51%</td><td class="asset">부국철강</td><td class="neg">-10.60%</td></tr><tr><td class="asset">디와이에이</td><td class="pos">+18.04%</td><td class="asset">KB 인버스 2X 밀 선물 ETN</td><td class="neg">-8.24%</td></tr><tr><td class="asset">잇츠한불</td><td class="pos">+15.81%</td><td class="asset">진원생명과학</td><td class="neg">-7.86%</td></tr><tr><td class="asset">대원전선우</td><td class="pos">+15.23%</td><td class="asset">N2 인버스 레버리지 WTI원유 선물 ETN(H)</td><td class="neg">-7.69%</td></tr></tbody></table>
 
-<h2>② 시황 초안</h2>
-<h3>미국 (Nasdaq 중심)</h3>
-<p class="takeaway">나스닥이 0.9% 하락하며 미국 증시 차익실현 압력이 부각됐다.</p>
-<p>다우는 0.05% 약보합 마감해 대형주는 방어됐으나, AI·기술주 중심의 나스닥은 WTI가 99.12달러로 2.85% 급등하며 인플레 재점화 우려를 자극한 영향을 받았다. 미 10년물 금리가 4bp 오른 4.35%로 상승하며 고밸류 성장주의 할인율 부담을 키웠다. UAE의 OPEC 탈퇴 결정이 공급 결속력 약화로 해석되며 유가 변동성을 확대시켰고, 미·중 반도체 갈등 재점화(상무부의 화홍向 장비 선적 중단)는 장비주에 단기 부정적으로 작용했다. 다만 씨게이트의 강한 가이던스가 AI 인프라 지출 신뢰를 지지하며 스토리지·메모리 관련주에는 우호적 재료로 반영됐다. 달러는 연준 결정을 앞두고 안정세를 유지했다.</p>
-<h3>KOSPI</h3>
-<p class="takeaway">KOSPI는 6648.81로 0.12% 강보합 마감했으나 외국인 순매도가 흐름을 지배했다.</p>
-<p>외국인은 2954억원 순매도하며 지수 상단을 눌렀고, 기관이 2573억원, 개인이 745억원 순매수로 방어했다. 상승 322종목 대비 하락 513종목으로 체감 지수는 약세였으며, 업종별로는 석유와가스(+3.98%), 전기장비(+3.7%), 항공화물운송과물류(+2.5%)가 WTI 급등과 인프라 모멘텀에 강세를 보였다. 반면 부동산(-3.09%), 비철금속(-2.38%), 디스플레이패널(-2.33%), 카드(-2.05%)가 부진했다. 시총 상위에서는 HD현대중공업(+3.3%), 한화에어로스페이스(+1.94%)가 방산·조선 강세를 이끈 반면 삼성전자(-0.34%)와 LG에너지솔루션(-0.53%)은 약세였으며, 원/달러 1473원의 고환율과 미국의 화홍 장비 선적 중단 이슈가 외국인 수급에 부담으로 작용했다.</p>
-<h3>KOSDAQ</h3>
-<p class="takeaway">KOSDAQ은 1213.04로 0.21% 하락하며 보합 마감했다.</p>
-<p>외국인이 243억원 순매수, 개인이 128억원 순매수한 반면 기관이 42억원 순매도로 매물을 출회했다. 상승 550종목 대비 하락 1027종목으로 종목 장세는 뚜렷한 약세였으며, 창업투자(-7.52%) 업종이 급락하며 지수를 압박했다. 개별 종목에서는 채비(+125.61%), 제일일렉트릭(+30%), KBI메탈(+29.97%), 폴라리스AI(+29.96%), 오로라(+29.93%) 등 일부 테마주가 상한가권에서 거래된 반면 아주IB투자(-18.98%), LB세미콘(-10.55%) 등은 큰 폭 하락했다. BASF-듀라셀 배터리 IP 분쟁 판결로 2차전지 IP 리스크가 부각된 점이 관련주 투자심리에 부담으로 작용했다.</p>
+<h3>KOSDAQ 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody><tr><td class="asset">채비</td><td class="pos">+125.61%</td><td class="asset">아주IB투자</td><td class="neg">-18.98%</td></tr><tr><td class="asset">제일일렉트릭</td><td class="pos">+30.00%</td><td class="asset">지아이에스</td><td class="neg">-10.20%</td></tr><tr><td class="asset">KBI메탈</td><td class="pos">+29.97%</td><td class="asset">LB세미콘</td><td class="neg">-10.55%</td></tr><tr><td class="asset">폴라리스AI</td><td class="pos">+29.96%</td><td class="asset">금강철강</td><td class="neg">-9.46%</td></tr><tr><td class="asset">오로라</td><td class="pos">+29.93%</td><td class="asset">SV인베스트먼트</td><td class="neg">-9.80%</td></tr></tbody></table>
 
-<h2>③ 핵심 뉴스 5건</h2>
-<ol class="news-pick"><li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/115493">[단독] 미국, 중국 2위 반도체 제조업체 화홍에 일부 장비 선적 중단 명령</a></div><div class="news-summary">미 상무부가 미국 기업들에 중국 화홍 시설 두 곳으로의 반도체 장비 선적을 중단하라는 서한을 발송. 화홍·화리 마이크로일렉트로닉스의 첨단 컴퓨팅 칩 제조가 대상.</div><div class="news-impact">→ 한국 반도체 장비주: 단기 부정적, 메모리/파운드리 반사이익 가능성</div></li>
-<li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/115553">[재업/내용 추가] 60년 동맹의 균열… UAE의 OPEC 탈퇴</a></div><div class="news-summary">UAE가 60년 만에 OPEC 탈퇴를 결정해 회원국에 충격. HSBC는 단기 영향은 제한적이나 OPEC+의 공급 조절 결속력 약화로 평가.</div><div class="news-impact">→ 국제 유가: 중장기 변동성 확대, 공급 카르텔 약화 시 하방 압력</div></li>
-<li><div class="news-head"><span class="bucket">환율</span> <a class="news-title" href="https://saveticker.com/app/news/115565">[외환] 달러, 중동 전쟁 속 연준 결정 앞두고 안정세</a></div><div class="news-summary">미국-이란 전쟁 종식 회담 교착 속 달러 안정세. 엔화는 160엔 수준. 파월 의장 리더십 하 마지막 가능성 있는 연준 결정 임박.</div><div class="news-impact">→ 원/달러: 강달러 압력 지속, 안전자산 수요 유지</div></li>
-<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/115542">씨게이트의 낙관적 전망에 AI 지출 신뢰도 상승, 스토리지 주식 급등</a></div><div class="news-summary">씨게이트가 강력한 매출·이익 전망 제시, AI 장비 지출이 견조함을 시사. 데이터 저장 수요 호조로 스토리지 주식 동반 상승.</div><div class="news-impact">→ AI 인프라/반도체 섹터: 상승 모멘텀, HDD·메모리 관련주 우호적</div></li>
-<li><div class="news-head"><span class="bucket">2차전지</span> <a class="news-title" href="https://saveticker.com/app/news/115476">버크셔의 듀라셀, 배터리 영업 비밀 관련 BASF 소송 직면…미국 판결</a></div><div class="news-summary">버크셔 해서웨이 소유 듀라셀이 독일 BASF의 배터리 영업비밀 침해 관련 소송에 직면. 미국 법원이 소송 진행을 허용하는 판결.</div><div class="news-impact">→ 글로벌 배터리 IP 분쟁: 한국 2차전지 업체 IP 리스크 부각</div></li></ol>
+<h2>④ 매크로 컨텍스트</h2>
+<div class="context-grid"><div class="box"><h4>美 금리 · 스프레드</h4><ul><li>10Y: <strong>4.350%</strong></li><li>2Y: <strong>3.780%</strong></li><li>2s10s: <strong>+57bp</strong> (정상 우상향)</li><li>1주 +3bp / 1개월 +1bp</li></ul></div><div class="box"><h4>韓 금리 · 물가</h4><ul><li>한국 단기금리(FRED 할인율 대용): <strong>1.00%</strong> (2026-01-01)</li><li>한국 10Y: <strong>3.728%</strong> (2026-03-01)</li><li>한국 CPI YoY: <strong>0.15%</strong> <em>(기준 2024-03-01, lag 큼)</em></li><li>원/달러: <strong>1,473.00</strong> (1D -0.11%)</li></ul></div></div>
 
-<div class='footer'>본 리포트는 자동 수집 데이터 + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
+<h2>⑤ 핵심 뉴스 5건</h2>
+<ol class="news-pick"><li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/115553">[재업/내용 추가] 60년 동맹의 균열… UAE의 OPEC 탈퇴</a></div><div class="news-summary">UAE가 60년 만에 OPEC 탈퇴를 결정. 회원국에 충격을 준 가운데 HSBC는 단기적 영향은 제한적이라고 평가.</div><div class="news-impact">→ 국제유가: 단기 보합·중장기 공급 불확실성 확대</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/115493">[단독] 미국, 중국 2위 반도체 제조업체 화홍에 일부 장비 선적 중단 명령</a></div><div class="news-summary">미 상무부가 자국 기업에 화홍·화리 마이크로일렉트로닉스 시설 2곳으로의 장비 선적 중단을 지시. 첨단 컴퓨팅 칩 제조 가능성 우려.</div><div class="news-impact">→ 미중 반도체 공급망/장비주: 변동성 확대, 한국 장비·소재주 반사이익 주목</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/115484">[마감] 칩스 오프 더 테이블</a></div><div class="news-summary">주요 빅테크 실적 발표를 앞두고 미 기술주가 화요일 급락 마감. AI 대규모 투자가 수익으로 이어질지에 대한 우려가 부각.</div><div class="news-impact">→ 글로벌 기술주/한국 반도체: 단기 조정 압력</div></li>
+<li><div class="news-head"><span class="bucket">환율</span> <a class="news-title" href="https://saveticker.com/app/news/115565">[외환] 달러, 중동 전쟁 속 연준 결정 앞두고 안정세</a></div><div class="news-summary">연준 결정과 파월 의장 임기 막바지 부각, 미-이란 회담 교착 상태 지속 속 달러는 안정세. 엔화는 160엔 수준에서 거래.</div><div class="news-impact">→ 달러인덱스: 횡보, 엔화 약세 지속·원/달러 상방 압력</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/115502">[2보] 씨게이트, AI 붐에 따른 강력한 데이터 저장 수요로 낙관적인 분기 전망</a></div><div class="news-summary">씨게이트가 월가 예상을 상회하는 매출·이익 전망 제시. AI 인프라 투자 견조함을 시사하며 스토리지 주식 동반 상승.</div><div class="news-impact">→ HDD/스토리지·메모리주: 상승, AI 인프라 수요 신뢰 회복</div></li></ol>
+
+<h2>⑥ 카테고리 헤드라인 (Google News RSS)</h2>
+<h3>코스피</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBlRWhHQVRCUjk3Y1VBMXRCR2o1b09RYnpqSWs4ZVNvT1RLb3VUbDEyeHFabmdQYmNKNWZ6czJWVXVOOTV6RmZqN24tS0RtOWx6NUFIeHB0OFJYekl5NEhiMdIBeEFVX3lxTE40THlkQ1BNbVc2NXJRdlZHcjdad1BOazkwZ3p3RlhvdHZqUWJWdEZKU0huNDFVeGYzWEstSnB4TmozNThDYk51MTF3dm9mNUZMOGRGSWs2Y2dkTDYwY1N4RnM1anlBcjlzSXF4czZXb0U4UXI2aVc0Sg?oc=5">코스피, 이틀 연속 새 역사…7000 고지 보인다(종합) - 뉴시스</a> — 뉴시스</li><li><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBTYy1UMVRIbFZldF83R001dXA4c2xUcTZvX2FnQmZhRExyQXI4YW5MV3JESG84RTBiZHFfQVQydXRzRkxRVC1aQjlvU3RLNy0tSmt1OU1YR1FKWlJxN1NLeVhaTnFiX2pyek1B?oc=5">이 대통령, 코스피 상승에 “큰 돌 몇개 집어낸 수준…정상화 계속” - 한겨레</a> — 한겨레</li><li><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJclpMTm9ZYXlhWTlyVUZLSDl6V1NLWFlndzlObi1ma29nRFU3R1hDaXNpZ0Vnd0huT3RncG9nSnhra1dxVGYtMmYxUzhLYmNaUVE5VHRjQlI2ZUXSAWBBVV95cUxNM2NwQkRGRjVRYTNMQ3lBaTlhZkhZQ1lUU0NNMUZhOHB4MVoxY0gxZ3k2MTAzU3d1TmxWa2diekFKTkJEUm9ESi1tWFNwdXJLNTBiTFZ0cm9TRkdKRnQzdS0?oc=5">[마켓뷰] 美 &#x27;AI인프라 투자경쟁&#x27; 한계 근접?…코스피 영향 받나 - 연합뉴스</a> — 연합뉴스</li><li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Ta29USC03bGRXeWpUSXZJTGFuMzBUMllnTWQ5Z1hvQzFEaG9FcEtuT0doNEE4T3BURnVGMWxlbGduaFlNX1hvX3N4aWJFUmlIb2ZLZXp2amdRUHdZWUE2U9IBeEFVX3lxTE9YeElfMFVSY3l5a2hvVzI5WVlxLWtZeWI5RjFFbEtEWWF5dGxBVlFMMTZfam1mdzhiYS0zQXpTdXlMdlZMQU92bUhPenExX1hTd0VHbDlJN2ljRFExZThTbUp5VGZmSUpsYTFBVFhqclZ3YUFKdUx0TQ?oc=5">[오늘의 증시]오픈AI發 기술주 성장 우려…코스피 약세 출발 전망 - 뉴시스</a> — 뉴시스</li><li><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBYbnRlV1l3UkduTm1kWmptNzhlcEREUno1Y0NsRTRFT0pSbmhwV24xLUN3ZHpoYTVrYW5SWGZtNFJIczI5Y0Q2X1UybE5OREE?oc=5">[오늘의 투자전략] “코스피, 하락 출발할 수도⋯오픈AI 악재 여파” - v.daum.net</a> — v.daum.net</li></ul>
+<h3>Federal Reserve</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5yQnI1NmxrcUhqX2FpTkF5TjI4VnRXQjNHOERGNHZIeGlqcEZtSXBNejJ5WktXLTVrU3N5eW1ORVBianRvVzRtb2xMcDB3T2l1c2FzQjdBa0dncTMySV82QTN2TEg3dExzMjVLWUozb1VfcDF6c1HSAXtBVV95cUxNTy1pcGhaS0VZdWotRldMYUFHRjB3dFdiSnotQ0lQcWMtc1NtcUpPbVVGWi16NUE3YWVjcGNCcml0UWxxdjQwSE5kVmJDT3A0Q2ZnTTh6WWFOSFhWRWVjZ1V4UEdJaGdSUmwxMnJuSGJhV3RqWXY2bjkzQ0k?oc=5">Here&#x27;s everything to expect when the Fed issues its latest interest rate decision Wednesday - CNBC</a> — CNBC</li><li><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxNVVhwakFPV1J0enZGTVVrTjFoalVhdWlJMXRfdXpjZ2xEZzFjVFQ4QmF6a3g4ODU4N1hOaXVtdUFVN2tJTktFaXNpc1NiOUFJSHB5b1l2Qm54eFJWRTY4RERVQ1l1YzZHLUJ1UFhtSzluankxcUVpQ3JXUWM3VWNJb1c2RWtuS1RXdHQ1bWo3Mm9EZzQ?oc=5">Despite Trump’s Demands, His Fed Pick Is Unlikely to Get a Quick Rate Cut - The New York Times</a> — The New York Times</li><li><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQMzJ2ZmlXb2dFTlVWUmRJNUxldjZENDJMS3VXNkc4blFYWjdZcE1iLTZLS1lOa0VvT0kyVkV6VzdPZVZBMHRzU3BUSDdrUFJfeGhFeXNkSUJBSXBISjlib19wTGYyY2hwbExORVpmR0hjSXFPanJPNzVhR0l1Zk16Vjl0eG4wNUROeGNWYw?oc=5">Running the Fed isn&#x27;t easy. We tried it - marketplace.org</a> — marketplace.org</li><li><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNLWd6T3E5YndZZmpJaHE1M3liSnNzVmtDZF9XQm9DckxfRTBkaGxYREZCTTIwZjBzdG9KVzNWTHYyblRjMlcwUkMwRlRtZ29hNTdZVktKWXNUTFU1anpSbVhGdnFxeE1heC1hN2tndXMzbGtCSHBQM19ZX25LTmFOYmUwMjFJQ2JxbEdpcDNlZWg1MUtkcl9WZ0hTQ292QThsNE9ydFUtMmdZWXowU0I1NXJxOA?oc=5">Fed Chair Powell Confronts His Final Big Decision: Stay or Go - WSJ</a> — WSJ</li><li><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNNmlnSE5GMm5LRWR3bng3NGJUdGhPbGVaZktQamh1WE1oZUp4Q3ZsSlJ4YlhHOHdjWUJxbWtYbWlOc3E3OHh5WDFJeGdoazhmTjR4R0Z0Y0FxQTRITVplbHgyX2padnRZdW5QOG5NZjVteVRBVXVlMVlvbVRZN09WcUdUYm9MM0RRR1pFV1phTlpUNDBja2VjMnNLdEY1dndqaFRlU0J1cw?oc=5">Will Kevin Warsh Trumpify the Federal Reserve? - The Economist</a> — The Economist</li></ul>
+<h3>원달러 환율</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HVE9RNThLM2tVLXJoMm9BRnNQMGFZOHl5aGl3WkpiTGFFb3Zzb2pzdFVpX0o3NUJwMWVnNGI2Z1ZEbEY0a3Noa0lTbl9pMDZ5NXQ5RlhGZlFZamI1ZFE?oc=5">원·달러 환율 1,473.2원 마감...UAE OPEC 탈퇴 여파 - YTN</a> — YTN</li><li><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTFA1U1VXNHRKRGpfMklkQWt6UFd4T1M3MWFid1JDLUhfejI2WTJ4WEJaMk9pRkl5SjlYWGlDam1PV18zTFZjR0lWLThtZjctVS1GU0I2RlN1NnlucEFCRm9YRXV1UDdXMEQzRlZJRTc0eWNqMFVf?oc=5">환율, UAE의 OPEC 탈퇴에 소폭 하락…장 초반 1,472.7원 - 연합뉴스 한민족센터</a> — 연합뉴스 한민족센터</li><li><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5DNThncWpsTXRHdEJjVExQLXhacmhzVWlEMEVZYThGWEtaQnAyelN0a19YOWVwbzFtaXdTX2tuVEJ6RlN0WXBtZUstSHVaVmtBUmpmNXhlYnVVdUnSAWBBVV95cUxNUU1qOU5sRmxuWEQ2YnRBYWVGS3RWRzlqVzVHOG9ZNkZNamlyT1NpalhTaC11UERta2hnc0hOcGNKbzR3UmFOMTdmbDhVZkpvc2hyS1B5X1VDVXhXcnRSZlc?oc=5">[외환] 원/달러 환율 0.4원 오른 1,474.0원(개장) - 연합뉴스</a> — 연합뉴스</li><li><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQdUM5WVFOUUs3d2RIbXByaW95UDNDZk9UdlR2dXdWSURhVXZteWg0aUJ1V080OFVWWEg0X015blhGMmx1ZDI0QVNpS1gxekE2dElOQlVnN2o3Y013dnRHd1JDMEdSUVNtODFZdXMzQUVWSXdBNHh4ZERtcDF4cFZlMEZSYVJRUQ?oc=5">[속보] 원·달러 환율, 0.4원 오른 1474원 개장 - Chosunbiz</a> — Chosunbiz</li><li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1LbDhuemJ1X0JCSnNJcG1hcm81NlE3QUJMNUlPbmtTakNvYlRiLWFyUERoWGd4QjQwdjJxZHV1WHNJa0RDcmwxTlJrajJHSnpVNkgxVEhFejZVZFlrXzg4Yg?oc=5">원·달러 환율 0.4원 오른 1474.0원 개장 - 아시아경제</a> — 아시아경제</li></ul>
+
+<div class='footer'>본 리포트는 자동 수집 데이터(KRX/yfinance/FRED/Google News/saveticker) + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
 </body>
 </html>
