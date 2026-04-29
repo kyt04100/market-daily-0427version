@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-04-29_daily_v2 · Sløk — Minimal</title>
+<style>
+:root {
+    --page-bg: #f0f0f0; --bg: #ffffff; --ink: #1a1a1a; --muted: #6b7280;
+    --line: #e5e7eb; --pos: #1a7a3e; --neg: #c0392b; --accent: #1f4e79;
+}
+body {
+    font-family: "Helvetica Neue", "Arial", "Malgun Gothic", sans-serif;
+    font-weight: 400;
+}
+h1 { font-size: 26pt; font-weight: 800; letter-spacing: -0.02em; }
+h1 + p { color: var(--muted); font-size: 9.5pt; margin-bottom: 18mm; }
+h2 {
+    font-size: 11pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    border-top: 2px solid var(--ink); padding-top: 8pt; margin-top: 14mm;
+}
+h3 { font-size: 9pt; font-weight: 700; color: var(--muted); text-transform: uppercase;
+     letter-spacing: 0.04em; margin-top: 8mm; }
+.takeaway { font-size: 11pt; font-weight: 600; margin: 0 0 6pt; }
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html { background: var(--page-bg); margin: 0; padding: 0; }
+body {
+    background: var(--bg);
+    color: var(--ink);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 6mm auto 14mm;
+    padding: 18mm 22mm 22mm;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 2px 30px rgba(0,0,0,0.18);
+}
+h1 { margin: 0 0 4pt; }
+h1 + p { margin-top: 0; }
+p, li { font-size: 10.5pt; }
+ul { padding-left: 5mm; margin: 2pt 0 6pt; }
+li { margin: 1.5pt 0; }
+strong { font-weight: 700; }
+em { font-style: normal; color: var(--muted); }
+hr { border: none; border-top: 1px solid var(--line); margin: 10mm 0; }
+
+table.snapshot {
+    border-collapse: collapse;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+    font-size: 9.5pt;
+    margin: 3mm 0 5mm;
+}
+table.snapshot th, table.snapshot td {
+    padding: 5pt 8pt;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    white-space: nowrap;
+}
+table.snapshot th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+}
+table.snapshot td.asset, table.snapshot th.asset { text-align: left; font-weight: 600; }
+table.snapshot td.pos { color: var(--pos); }
+table.snapshot td.neg { color: var(--neg); }
+table.snapshot td.neutral { color: var(--muted); }
+
+p.muted-note { color: var(--muted); font-size: 8.5pt; margin: -2mm 0 4mm; }
+ol.news-pick { list-style: none; padding-left: 0; counter-reset: nv; }
+ol.news-pick li {
+    counter-increment: nv;
+    padding: 6pt 0 8pt; border-bottom: 1px solid var(--line);
+    position: relative;
+}
+ol.news-pick li::before {
+    content: counter(nv);
+    position: absolute; left: 0; top: 6pt;
+    font-weight: 800; color: var(--accent); font-size: 12pt;
+    width: 8mm;
+}
+ol.news-pick li > div { margin-left: 9mm; }
+.news-head { font-size: 10pt; line-height: 1.4; }
+.bucket {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 8pt; font-weight: 700; padding: 1pt 6pt; border-radius: 2pt;
+    margin-right: 6pt; vertical-align: middle;
+    text-transform: uppercase; letter-spacing: 0.04em;
+}
+ol.news-pick li:last-child { border-bottom: none; }
+a.news-title { font-weight: 600; }
+.news-summary { font-size: 9.5pt; color: var(--ink); margin-top: 3pt; }
+.news-impact {
+    font-size: 9pt; color: var(--accent); margin-top: 2pt; font-weight: 600;
+}
+
+ul.rss-list { list-style: none; padding-left: 0; }
+ul.rss-list li {
+    padding: 4pt 0; border-bottom: 1px dotted var(--line);
+    font-size: 9.5pt;
+}
+ul.rss-list li:last-child { border-bottom: none; }
+
+.macro-line {
+    background: rgba(0,0,0,0.025);
+    border-left: 3px solid var(--accent);
+    padding: 6pt 12pt;
+    margin: 3mm 0 5mm;
+    font-size: 10pt;
+    font-variant-numeric: tabular-nums;
+}
+.macro-line strong { color: var(--accent); }
+
+.context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin: 3mm 0 5mm;
+}
+.context-grid .box {
+    border: 1px solid var(--line);
+    padding: 8pt 12pt;
+}
+.context-grid .box h4 {
+    font-size: 9pt; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.04em; margin: 0 0 4pt; color: var(--accent);
+}
+.context-grid .box ul { padding-left: 4mm; margin: 0; }
+.context-grid .box li { font-size: 9.5pt; }
+
+.footer {
+    margin-top: 14mm; padding-top: 4mm;
+    border-top: 1px solid var(--line);
+    font-size: 8pt; color: var(--muted);
+}
+
+button.pdf-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    padding: 8px 14px; font-size: 10pt; font-weight: 700;
+    background: var(--accent); color: #fff; border: none; border-radius: 4px;
+    cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    font-family: inherit;
+}
+button.pdf-btn:hover { filter: brightness(1.1); }
+
+@media print {
+    html, body { background: var(--bg); }
+    body { margin: 0; box-shadow: none; }
+    .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+<button class='pdf-btn no-print' onclick='window.print()' title='브라우저 인쇄 다이얼로그에서 "PDF로 저장" 선택'>PDF 다운로드</button>
+
+<h1>데일리 시장 스냅샷 v2</h1>
+<p>2026-04-29 (Wednesday) · 자동 생성 · Sløk — Minimal · 데일리 + 위클리 통합</p>
+
+<h2>① 헤드라인 스냅샷 — 다기간 수익률</h2>
+<table class="snapshot"><thead><tr><th class="asset">자산</th><th>종가</th><th>1D</th><th>1W</th><th>1M</th><th>3M</th><th>YTD</th><th>1Y</th></tr></thead><tbody>
+<tr><td class="asset">KOSPI</td><td>6,641.02</td><td class="pos">+0.39%</td><td class="pos">+3.95%</td><td class="pos">+22.10%</td><td class="pos">+28.43%</td><td class="pos">+54.10%</td><td class="pos">+160.55%</td></tr>
+<tr><td class="asset">KOSDAQ</td><td>1,217.11</td><td class="pos">+0.13%</td><td class="pos">+3.05%</td><td class="pos">+9.94%</td><td class="pos">+4.53%</td><td class="pos">+28.72%</td><td class="pos">+67.54%</td></tr>
+<tr><td class="asset">S&amp;P 500</td><td>7,138.80</td><td class="neg">-0.49%</td><td class="pos">+1.06%</td><td class="pos">+12.09%</td><td class="pos">+2.30%</td><td class="pos">+4.09%</td><td class="pos">+29.12%</td></tr>
+<tr><td class="asset">NASDAQ 100</td><td>27,029.01</td><td class="neg">-1.01%</td><td class="pos">+2.08%</td><td class="pos">+16.84%</td><td class="pos">+3.87%</td><td class="pos">+7.23%</td><td class="pos">+39.13%</td></tr>
+<tr><td class="asset">VIX</td><td>17.83</td><td class="neg">-1.05%</td><td class="neg">-8.56%</td><td class="neg">-42.58%</td><td class="pos">+9.05%</td><td class="pos">+22.88%</td><td class="neg">-29.11%</td></tr>
+<tr><td class="asset">EAFE (해외선진)</td><td>100.96</td><td class="neg">-0.41%</td><td class="neg">-0.66%</td><td class="pos">+7.63%</td><td class="neg">-0.05%</td><td class="pos">+4.04%</td><td class="pos">+19.23%</td></tr>
+<tr><td class="asset">EM (신흥국)</td><td>62.99</td><td class="neg">-1.02%</td><td class="pos">+1.19%</td><td class="pos">+14.11%</td><td class="pos">+3.69%</td><td class="pos">+12.00%</td><td class="pos">+44.70%</td></tr>
+</tbody></table>
+
+<div class="macro-line">
+환율 <strong>1,474.69</strong> (-0.36%) &middot; 美 10Y <strong>4.310%</strong> (-3bp) &middot; 美 2s10s <strong>+53bp</strong> (정상) &middot; WTI <strong>96.61</strong> (+2.34%) &middot; VIX <strong>17.83</strong>
+</div>
+
+<h2>② 시황 초안</h2>
+<p class="muted-note">기준: 직전 거래일 (2026-04-28) 종가</p>
+
+<h3>미국 (Nasdaq 중심)</h3>
+<p class="takeaway">나스닥은 AI 인프라 모멘텀에 힘입어 24,887.10(+0.2%)으로 강보합 마감했고, 다우는 49,167.79(-0.13%)로 보합권에 머물렀다.</p>
+<p>케이던스가 AI 칩 설계 호황을 근거로 연간 매출 전망을 상향하며 반도체·EDA 섹터 강세를 견인했고, 이는 지수 상단을 떠받친 핵심 동력이었다. 매크로 측면에서 미 10년물 국채금리는 4.31%로 3bp 내려 위험자산에 우호적이었으나, WTI는 96.61달러(+2.34%)로 큰 폭 상승하며 인플레 재점화 부담을 더했다. 유가 강세 배경에는 미-이란 회담 교착, 호르무즈 해협 재개 지연, 베센트 재무장관의 이란 석유생산 중단 발언이 동시에 작용했다. 달러지수는 미-이란 협상 의구심에 2거래일 연속 하락하며 파월 마지막 FOMC를 앞두고 약세 흐름을 이어갔다.</p>
+
+<h3>KOSPI</h3>
+<p class="takeaway">KOSPI는 6,646.17(+0.47%)로 강보합 마감하며 상승 종목 464개가 하락 359개를 앞섰다.</p>
+<p>외국인이 1,848억 원 순매도로 지수를 눌렀으나 기관 633억 원, 개인 1,501억 원 순매수가 하방을 방어했다. 업종별로는 전자제품(+9.17%)·철강(+8.71%)·건설(+5.14%)이 지수를 견인했고, 종목에서는 SK하이닉스(+1.24%), 현대차(+3.24%), LG에너지솔루션(+1.51%)이 강세를 보인 반면 삼성전자(-1.0%)와 한화에어로스페이스(-1.79%), HD현대중공업(-2.53%)은 부진했다. 케이던스發 AI 인프라 투자 모멘텀 재확인이 반도체 중심 매수로 연결됐고, 원/달러 환율은 1,474.69원(-0.36%)으로 약보합을 보이며 외국인 수급 부담을 일부 완화했다. 다만 WTI 96.61달러(+2.34%) 급등에 따른 인플레 압력이 외국인 순매도 기조를 지지했다.</p>
+
+<h3>KOSDAQ</h3>
+<p class="takeaway">KOSDAQ은 1,208.37(-1.45%)로 하락 마감했고 하락 종목 1,038개가 상승 518개를 두 배 가까이 압도하며 약세가 확연했다.</p>
+<p>외국인이 2,895억 원, 기관이 104억 원 동반 순매도에 나섰고 개인만 3,099억 원 순매수로 맞섰다. 업종별로는 건강관리업체및서비스(-4.33%)·생물공학(-4.16%)·생명과학도구및서비스(-2.81%) 등 바이오·헬스케어 전반이 무너졌으며, 에이비엘바이오(-22.93%), 엔젠바이오(-22.37%) 등 개별 악재가 투자심리를 위축시켰다. 통신장비(-3.6%)와 조선(-2.47%)도 하단을 형성한 반면, 세아메카닉스(+25.23%), 금강철강(+12.97%) 등 철강·기계 일부만 상한가 영역에서 강세를 보였다. WTI 급등과 중동 지정학 리스크 확대가 위험자산 변동성을 키우며 성장주 비중이 큰 코스닥에 차별적 부담으로 작용했다.</p>
+
+<h2>③ 수급 · 업종 · 종목</h2>
+<p class="muted-note">기준: 2026-04-28 마감</p>
+
+<h3>외국인·기관·개인 수급</h3>
+<table class="snapshot"><thead><tr><th class="asset">시장</th><th>외국인</th><th>기관</th><th>개인</th><th>방향</th></tr></thead><tbody>
+<tr><td class="asset">KOSPI</td><td class="neg">-1,848</td><td class="pos">+633</td><td class="pos">+1,501</td><td class='neutral'>외국인 매도 주도</td></tr>
+<tr><td class="asset">KOSDAQ</td><td class="neg">-2,895</td><td class="neg">-104</td><td class="pos">+3,099</td><td class='neutral'>외국인+기관 동반 순매도</td></tr>
+</tbody></table>
+<p class="muted-note">단위: 억원 · +순매수 / −순매도</p>
+
+<h3>업종 Top / Bottom</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승 업종</th><th>%</th><th class="asset">하락 업종</th><th>%</th></tr></thead><tbody>
+<tr><td class="asset">전자제품</td><td class="pos">+9.17%</td><td class="asset">건강관리업체및서비스</td><td class="neg">-4.33%</td></tr>
+<tr><td class="asset">철강</td><td class="pos">+8.71%</td><td class="asset">생물공학</td><td class="neg">-4.16%</td></tr>
+<tr><td class="asset">건설</td><td class="pos">+5.14%</td><td class="asset">통신장비</td><td class="neg">-3.60%</td></tr>
+<tr><td class="asset">전기장비</td><td class="pos">+3.45%</td><td class="asset">생명과학도구및서비스</td><td class="neg">-2.81%</td></tr>
+<tr><td class="asset">화학</td><td class="pos">+2.81%</td><td class="asset">조선</td><td class="neg">-2.47%</td></tr>
+</tbody></table>
+
+<h3>KOSPI 시총 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody>
+<tr><td class="asset">삼성전자</td><td>222,250</td><td class="neg">-1.00%</td></tr>
+<tr><td class="asset">SK하이닉스</td><td>1,308,000</td><td class="pos">+1.24%</td></tr>
+<tr><td class="asset">삼성전자우</td><td>160,800</td><td class="pos">+0.44%</td></tr>
+<tr><td class="asset">현대차</td><td>541,000</td><td class="pos">+3.24%</td></tr>
+<tr><td class="asset">LG에너지솔루션</td><td>471,000</td><td class="pos">+1.51%</td></tr>
+<tr><td class="asset">SK스퀘어</td><td>811,000</td><td class="pos">+2.79%</td></tr>
+<tr><td class="asset">두산에너빌리티</td><td>126,600</td><td class="neg">-1.78%</td></tr>
+<tr><td class="asset">한화에어로스페이스</td><td>1,428,000</td><td class="neg">-1.79%</td></tr>
+<tr><td class="asset">삼성바이오로직스</td><td>1,510,000</td><td class="pos">+0.07%</td></tr>
+<tr><td class="asset">HD현대중공업</td><td>656,000</td><td class="neg">-2.53%</td></tr>
+</tbody></table>
+
+<h3>KOSPI 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody>
+<tr><td class="asset">아주스틸</td><td class="pos">+29.93%</td><td class="asset">한국ANKOR유전</td><td class="neg">-29.27%</td></tr>
+<tr><td class="asset">포스코스틸리온</td><td class="pos">+26.32%</td><td class="asset">부광약품</td><td class="neg">-9.86%</td></tr>
+<tr><td class="asset">SK증권</td><td class="pos">+20.95%</td><td class="asset">광전자</td><td class="neg">-9.62%</td></tr>
+<tr><td class="asset">알루코</td><td class="pos">+20.00%</td><td class="asset">키움 레버리지 바이오TOP10 ETN</td><td class="neg">-9.10%</td></tr>
+<tr><td class="asset">SK증권우</td><td class="pos">+18.64%</td><td class="asset">키움 인버스 2X 전력 TOP5 ETN</td><td class="neg">-6.95%</td></tr>
+</tbody></table>
+
+<h3>KOSDAQ 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody>
+<tr><td class="asset">세아메카닉스</td><td class="pos">+25.23%</td><td class="asset">에이비엘바이오</td><td class="neg">-22.93%</td></tr>
+<tr><td class="asset">리튬포어스</td><td class="pos">+23.88%</td><td class="asset">엔젠바이오</td><td class="neg">-22.37%</td></tr>
+<tr><td class="asset">한주에이알티</td><td class="pos">+14.99%</td><td class="asset">동아엘텍</td><td class="neg">-16.21%</td></tr>
+<tr><td class="asset">금강철강</td><td class="pos">+12.97%</td><td class="asset">RF머트리얼즈</td><td class="neg">-11.38%</td></tr>
+<tr><td class="asset">나우IB</td><td class="pos">+12.85%</td><td class="asset">BF랩스</td><td class="neg">-10.13%</td></tr>
+</tbody></table>
+
+<h2>④ 매크로 컨텍스트</h2>
+<div class="context-grid">
+  <div class="box">
+    <h4>美 금리 · 스프레드</h4>
+    <ul>
+      <li>10Y: <strong>4.310%</strong> (1D -3bp)</li>
+      <li>2Y: <strong>3.780%</strong></li>
+      <li>2s10s: <strong>+53bp</strong> (정상 우상향)</li>
+      <li>1주 -2bp / 1개월 +4bp · 완만한 스티프닝</li>
+    </ul>
+  </div>
+  <div class="box">
+    <h4>韓 금리 · 물가</h4>
+    <ul>
+      <li>한국 단기금리(FRED 할인율 대용): <strong>1.00%</strong> (2026-01-01)</li>
+      <li>한국 10Y: <strong>3.728%</strong> (2026-03-01)</li>
+      <li>한국 CPI YoY: <strong>0.15%</strong> <em>(기준 2024-03-01, lag 큼)</em></li>
+      <li>원/달러: <strong>1,474.69</strong> (1D -0.36%)</li>
+    </ul>
+  </div>
+</div>
+
+<h2>⑤ 핵심 뉴스 5건</h2>
+<ol class="news-pick">
+<li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://saveticker.com/app/news/114508">일본은행, 이란 전쟁 불확실성 속 금리 동결 및 매파적 신호 완화 전망</a></div>
+<div class="news-summary">BOJ 이틀간 회의 종료 후 정책금리 0.75% 동결 가능성 우세. 이란 전쟁 불확실성 속 매파적 신호 완화 관측.</div>
+<div class="news-impact">→ 엔화: 약세 압력, 일본 국채금리: 하락 압력</div></li>
+
+<li><div class="news-head"><span class="bucket">유가/원자재</span> <a class="news-title" href="https://saveticker.com/app/news/114501">[글로벌] 중동 정세 주시 속 유가 상승, 주식 소폭 상승</a></div>
+<div class="news-summary">미-이란 회담 교착 및 호르무즈 해협 재개 지연으로 공급 부족 우려, 유가 선물 상승 마감. 주식은 소폭 상승.</div>
+<div class="news-impact">→ 국제유가: 상승, 글로벌 인플레: 재상승 압력</div></li>
+
+<li><div class="news-head"><span class="bucket">지정학</span> <a class="news-title" href="https://saveticker.com/app/news/114534">베센트 재무장관, "이란, 석유 생산도 곧 멈출 것"</a></div>
+<div class="news-summary">베센트 미 재무장관, 강력한 봉쇄로 이란 석유 산업 생산 중단 시작, 곧 시추 붕괴 수준 급감 발언. 재무부 최대 압박 지속.</div>
+<div class="news-impact">→ 국제유가: 추가 상승 압력, 위험자산: 변동성 확대</div></li>
+
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://saveticker.com/app/news/114530">[2보] 케이던스, AI 칩 설계 호황 지속에 연간 매출 전망 상향</a></div>
+<div class="news-summary">케이던스 디자인, AI 프로세서 투자 지속에 칩 설계 도구 수요 호조로 1Q 실적 호조 및 연간 매출 전망 상향.</div>
+<div class="news-impact">→ 글로벌 반도체·EDA 섹터: 강세, AI 인프라 투자 모멘텀 재확인</div></li>
+
+<li><div class="news-head"><span class="bucket">환율</span> <a class="news-title" href="https://saveticker.com/app/news/114499">[외환] 미-이란 회담 교착에 달러 약세…파월 마지막 연준 회의 주목</a></div>
+<div class="news-summary">달러지수 2거래일 연속 하락, 미-이란 협상 의구심이 시장 부담. 유로는 ECB 결정 앞두고 상승, 시장은 파월 마지막 FOMC 주시.</div>
+<div class="news-impact">→ 달러: 약세, 유로/엔: 강세 압력, 신흥국 통화: 우호적</div></li>
+</ol>
+
+<h2>⑥ 카테고리 헤드라인 (Google News RSS)</h2>
+
+<h3>코스피</h3>
+<ul class="rss-list">
+<li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBlRWhHQVRCUjk3Y1VBMXRCR2o1b09RYnpqSWs4ZVNvT1RLb3VUbDEyeHFabmdQYmNKNWZ6czJWVXVOOTV6RmZqN24tS0RtOWx6NUFIeHB0OFJYekl5NEhiMdIBeEFVX3lxTE40THlkQ1BNbVc2NXJRdlZHcjdad1BOazkwZ3p3RlhvdHZqUWJWdEZKU0huNDFVeGYzWEstSnB4TmozNThDYk51MTF3dm9mNUZMOGRGSWs2Y2dkTDYwY1N4RnM1anlBcjlzSXF4czZXb0U4UXI2aVc0Sg?oc=5">코스피, 이틀 연속 새 역사…7000 고지 보인다(종합) — 뉴시스</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBTYy1UMVRIbFZldF83R001dXA4c2xUcTZvX2FnQmZhRExyQXI4YW5MV3JESG84RTBiZHFfQVQydXRzRkxRVC1aQjlvU3RLNy0tSmt1OU1YR1FKWlJxN1NLeVhaTnFiX2pyek1B?oc=5">이 대통령, 코스피 상승에 "큰 돌 몇개 집어낸 수준…정상화 계속" — 한겨레</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJclpMTm9ZYXlhWTlyVUZLSDl6V1NLWFlndzlObi1ma29nRFU3R1hDaXNpZ0Vnd0huT3RncG9nSnhra1dxVGYtMmYxUzhLYmNaUVE5VHRjQlI2ZUXSAWBBVV95cUxNM2NwQkRGRjVRYTNMQ3lBaTlhZkhZQ1lUU0NNMUZhOHB4MVoxY0gxZ3k2MTAzU3d1TmxWa2diekFKTkJEUm9ESi1tWFNwdXJLNTBiTFZ0cm9TRkdKRnQzdS0?oc=5">[마켓뷰] 美 'AI인프라 투자경쟁' 한계 근접?…코스피 영향 받나 — 연합뉴스</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Ta29USC03bGRXeWpUSXZJTGFuMzBUMllnTWQ5Z1hvQzFEaG9FcEtuT0doNEE4T3BURnVGMWxlbGduaFlNX1hvX3N4aWJFUmlIb2ZLZXp2amdRUHdZWUE2U9IBeEFVX3lxTE9YeElfMFVSY3l5a2hvVzI5WVlxLWtZeWI5RjFFbEtEWWF5dGxBVlFMMTZfam1mdzhiYS0zQXpTdXlMdlZMQU92bUhPenExX1hTd0VHbDlJN2ljRFExZThTbUp5VGZmSUpsYTFBVFhqclZ3YUFKdUx0TQ?oc=5">[오늘의 증시] 오픈AI發 기술주 성장 우려…코스피 약세 출발 전망 — 뉴시스</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBYbnRlV1l3UkduTm1kWmptNzhlcEREUno1Y0NsRTRFT0pSbmhwV24xLUN3ZHpoYTVrYW5SWGZtNFJIczI5Y0Q2X1UybE5OREE?oc=5">[오늘의 투자전략] "코스피, 하락 출발할 수도⋯오픈AI 악재 여파" — v.daum.net</a></li>
+</ul>
+
+<h3>Federal Reserve</h3>
+<ul class="rss-list">
+<li><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5yQnI1NmxrcUhqX2FpTkF5TjI4VnRXQjNHOERGNHZIeGlqcEZtSXBNejJ5WktXLTVrU3N5eW1ORVBianRvVzRtb2xMcDB3T2l1c2FzQjdBa0dncTMySV82QTN2TEg3dExzMjVLWUozb1VfcDF6c1HSAXtBVV95cUxNTy1pcGhaS0VZdWotRldMYUFHRjB3dFdiSnotQ0lQcWMtc1NtcUpPbVVGWi16NUE3YWVjcGNCcml0UWxxdjQwSE5kVmJDT3A0Q2ZnTTh6WWFOSFhWRWVjZ1V4UEdJaGdSUmwxMnJuSGJhV3RqWXY2bjkzQ0k?oc=5">Here's everything to expect when the Fed issues its latest interest rate decision Wednesday — CNBC</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxNVVhwakFPV1J0enZGTVVrTjFoalVhdWlJMXRfdXpjZ2xEZzFjVFQ4QmF6a3g4ODU4N1hOaXVtdUFVN2tJTktFaXNpc1NiOUFJSHB5b1l2Qm54eFJWRTY4RERVQ1l1YzZHLUJ1UFhtSzluankxcUVpQ3JXUWM3VWNJb1c2RWtuS1RXdHQ1bWo3Mm9EZzQ?oc=5">Despite Trump's Demands, His Fed Pick Is Unlikely to Get a Quick Rate Cut — NYT</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNLWd6T3E5YndZZmpJaHE1M3liSnNzVmtDZF9XQm9DckxfRTBkaGxYREZCTTIwZjBzdG9KVzNWTHYyblRjMlcwUkMwRlRtZ29hNTdZVktKWXNUTFU1anpSbVhGdnFxeE1heC1hN2tndXMzbGtCSHBQM19ZX25LTmFOYmUwMjFJQ2JxbEdpcDNlZWg1MUtkcl9WZ0hTQ292QThsNE9ydFUtMmdZWXowU0I1NXJxOA?oc=5">Fed Chair Powell Confronts His Final Big Decision: Stay or Go — WSJ</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNNmlnSE5GMm5LRWR3bng3NGJUdGhPbGVaZktQamh1WE1oZUp4Q3ZsSlJ4YlhHOHdjWUJxbWtYbWlOc3E3OHh5WDFJeGdoazhmTjR4R0Z0Y0FxQTRITVplbHgyX2padnRZdW5QOG5NZjVteVRBVXVlMVlvbVRZN09WcUdUYm9MM0RRR1pFV1phTlpUNDBja2VjMnNLdEY1dndqaFRlU0J1cw?oc=5">Will Kevin Warsh Trumpify the Federal Reserve? — The Economist</a></li>
+</ul>
+
+<h3>원달러 환율</h3>
+<ul class="rss-list">
+<li><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5HVE9RNThLM2tVLXJoMm9BRnNQMGFZOHl5aGl3WkpiTGFFb3Zzb2pzdFVpX0o3NUJwMWVnNGI2Z1ZEbEY0a3Noa0lTbl9pMDZ5NXQ5RlhGZlFZamI1ZFE?oc=5">원·달러 환율 1,473.2원 마감…UAE OPEC 탈퇴 여파 — YTN</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTFA1U1VXNHRKRGpfMklkQWt6UFd4T1M3MWFid1JDLUhfejI2WTJ4WEJaMk9pRkl5SjlYWGlDam1PV18zTFZjR0lWLThtZjctVS1GU0I2RlN1NnlucEFCRm9YRXV1UDdXMEQzRlZJRTc0eWNqMFVf?oc=5">환율, UAE의 OPEC 탈퇴에 소폭 하락…장 초반 1,472.7원 — 연합뉴스 한민족센터</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5DNThncWpsTXRHdEJjVExQLXhacmhzVWlEMEVZYThGWEtaQnAyelN0a19YOWVwbzFtaXdTX2tuVEJ6RlN0WXBtZUstSHVaVmtBUmpmNXhlYnVVdUnSAWBBVV95cUxNUU1qOU5sRmxuWEQ2YnRBYWVGS3RWRzlqVzVHOG9ZNkZNamlyT1NpalhTaC11UERta2hnc0hOcGNKbzR3UmFOMTdmbDhVZkpvc2hyS1B5X1VDVXhXcnRSZlc?oc=5">[외환] 원/달러 환율 0.4원 오른 1,474.0원(개장) — 연합뉴스</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQdUM5WVFOUUs3d2RIbXByaW95UDNDZk9UdlR2dXdWSURhVXZteWg0aUJ1V080OFVWWEg0X015blhGMmx1ZDI0QVNpS1gxekE2dElOQlVnN2o3Y013dnRHd1JDMEdSUVNtODFZdXMzQUVWSXdBNHh4ZERtcDF4cFZlMEZSYVJRUQ?oc=5">[속보] 원·달러 환율, 0.4원 오른 1474원 개장 — Chosunbiz</a></li>
+</ul>
+
+<div class='footer'>본 리포트는 자동 수집 데이터(KRX/yfinance/FRED/Google News/saveticker) + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
+</body>
+</html>
