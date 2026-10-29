@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-29_daily · Sløk — Minimal</title>
+<style>
+:root {
+    --page-bg: #f0f0f0; --bg: #ffffff; --ink: #1a1a1a; --muted: #6b7280;
+    --line: #e5e7eb; --pos: #1a7a3e; --neg: #c0392b; --accent: #1f4e79;
+}
+body {
+    font-family: "Helvetica Neue", "Arial", "Malgun Gothic", sans-serif;
+    font-weight: 400;
+}
+h1 { font-size: 26pt; font-weight: 800; letter-spacing: -0.02em; }
+h1 + p { color: var(--muted); font-size: 9.5pt; margin-bottom: 18mm; }
+h2 {
+    font-size: 11pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    border-top: 2px solid var(--ink); padding-top: 8pt; margin-top: 14mm;
+}
+h3 { font-size: 9pt; font-weight: 700; color: var(--muted); text-transform: uppercase;
+     letter-spacing: 0.04em; margin-top: 8mm; }
+.takeaway { font-size: 11pt; font-weight: 600; margin: 0 0 6pt; }
+
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html { background: var(--page-bg); margin: 0; padding: 0; }
+body {
+    background: var(--bg);
+    color: var(--ink);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 6mm auto 14mm;
+    padding: 18mm 22mm 22mm;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 2px 30px rgba(0,0,0,0.18);
+}
+h1 { margin: 0 0 4pt; }
+h1 + p { margin-top: 0; }
+p, li { font-size: 10.5pt; }
+ul { padding-left: 5mm; margin: 2pt 0 6pt; }
+li { margin: 1.5pt 0; }
+strong { font-weight: 700; }
+em { font-style: normal; color: var(--muted); }
+hr { border: none; border-top: 1px solid var(--line); margin: 10mm 0; }
+
+img.chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 2mm 0 3mm;
+}
+
+table.snapshot {
+    border-collapse: collapse;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+    font-size: 9.5pt;
+    margin: 3mm 0 5mm;
+}
+table.snapshot th, table.snapshot td {
+    padding: 5pt 8pt;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    white-space: nowrap;
+}
+table.snapshot th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.04em;
+}
+table.snapshot td.asset, table.snapshot th.asset { text-align: left; font-weight: 600; }
+table.snapshot td.pos { color: var(--pos); }
+table.snapshot td.neg { color: var(--neg); }
+table.snapshot td.neutral { color: var(--muted); }
+
+ul.news-24h { list-style: none; padding-left: 0; }
+ul.news-24h li {
+    padding: 5pt 0; border-bottom: 1px dotted var(--line);
+    font-size: 9.5pt;
+}
+ul.news-24h li:last-child { border-bottom: none; }
+.news-when {
+    display: inline-block; min-width: 12mm;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted); font-size: 8.5pt; margin-right: 4pt;
+}
+.news-src { color: var(--muted); font-size: 8.5pt; }
+a.news-title { font-weight: 600; }
+.news-summary {
+    margin: 2pt 0 0 16mm;
+    font-size: 9pt; color: var(--ink); line-height: 1.4;
+    border-left: 2px solid var(--line); padding-left: 6pt;
+}
+
+.news-brief {
+    background: rgba(0,0,0,0.025);
+    border-left: 3px solid var(--accent, var(--ink));
+    padding: 8pt 12pt 4pt;
+    margin: 0 0 8mm;
+}
+.news-brief h3 {
+    font-size: 10pt; text-transform: uppercase; letter-spacing: 0.05em;
+    margin: 6pt 0 3pt; color: var(--accent, var(--ink));
+}
+.news-brief h3:first-child { margin-top: 0; }
+.news-brief p { font-size: 10pt; margin: 2pt 0; }
+.news-brief ul { padding-left: 4mm; margin: 2pt 0 4pt; }
+.news-brief li { font-size: 9.5pt; margin: 2pt 0; }
+.news-brief strong { color: var(--accent, var(--ink)); }
+
+.footer {
+    margin-top: 14mm; padding-top: 4mm;
+    border-top: 1px solid var(--line);
+    font-size: 8pt; color: var(--muted);
+}
+
+@media print {
+    html, body { background: var(--bg); }
+    body { margin: 0; box-shadow: none; }
+}
+</style>
+
+<style>
+p.muted-note { color: var(--muted); font-size: 8.5pt; margin: -2mm 0 4mm; }
+
+ol.news-pick { list-style: none; padding-left: 0; counter-reset: nv; }
+ol.news-pick li {
+    counter-increment: nv;
+    padding: 6pt 0 8pt; border-bottom: 1px solid var(--line);
+    position: relative;
+}
+ol.news-pick li::before {
+    content: counter(nv);
+    position: absolute; left: 0; top: 6pt;
+    font-weight: 800; color: var(--accent); font-size: 12pt;
+    width: 8mm;
+}
+ol.news-pick li > div { margin-left: 9mm; }
+.news-head { font-size: 10pt; line-height: 1.4; }
+.bucket {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-size: 8pt; font-weight: 700; padding: 1pt 6pt; border-radius: 2pt;
+    margin-right: 6pt; vertical-align: middle;
+    text-transform: uppercase; letter-spacing: 0.04em;
+}
+ol.news-pick li:last-child { border-bottom: none; }
+.news-summary { font-size: 9.5pt; color: var(--ink); margin-top: 3pt;
+                margin-left: 0; padding-left: 0; border-left: none; }
+.news-impact {
+    font-size: 9pt; color: var(--accent); margin-top: 2pt; font-weight: 600;
+}
+
+.macro-line {
+    background: rgba(0,0,0,0.025);
+    border-left: 3px solid var(--accent);
+    padding: 6pt 12pt;
+    margin: 3mm 0 5mm;
+    font-size: 10pt;
+    font-variant-numeric: tabular-nums;
+}
+.macro-line strong { color: var(--accent); }
+
+.context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin: 3mm 0 5mm;
+}
+.context-grid .box {
+    border: 1px solid var(--line);
+    padding: 8pt 12pt;
+}
+.context-grid .box h4 {
+    font-size: 9pt; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.04em; margin: 0 0 4pt; color: var(--accent);
+}
+.context-grid .box ul { padding-left: 4mm; margin: 0; }
+.context-grid .box li { font-size: 9.5pt; }
+
+ul.rss-list { list-style: none; padding-left: 0; }
+ul.rss-list li {
+    padding: 4pt 0; border-bottom: 1px dotted var(--line);
+    font-size: 9.5pt;
+}
+ul.rss-list li:last-child { border-bottom: none; }
+ul.rss-list a { font-weight: 600; }
+
+button.pdf-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    padding: 8px 14px; font-size: 10pt; font-weight: 700;
+    background: var(--accent); color: #fff; border: none; border-radius: 4px;
+    cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    font-family: inherit;
+}
+button.pdf-btn:hover { filter: brightness(1.1); }
+@media print {
+    .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+<p><button class='pdf-btn no-print' onclick='window.print()' title='브라우저 인쇄 다이얼로그에서 "PDF로 저장" 선택'>PDF 다운로드</button></p>
+<h1>데일리 시장 스냅샷</h1>
+<p>2026-10-29 (Thursday) · 자동 생성 · Sløk — Minimal · 데일리 + 위클리 통합</p>
+<h2>① 헤드라인 스냅샷 — 다기간 수익률</h2>
+<table class="snapshot"><thead><tr><th class="asset">자산</th><th>종가</th><th>1D</th><th>1W</th><th>1M</th><th>3M</th><th>YTD</th><th>1Y</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td>6,012.44</td><td class="pos">+6.63%</td><td class="pos">+4.83%</td><td class="neg">-12.73%</td><td class="pos">+7.49%</td><td class="pos">+39.51%</td><td class="pos">+49.92%</td></tr><tr><td class="asset">KOSDAQ</td><td>771.28</td><td class="pos">+3.69%</td><td class="neg">-2.71%</td><td class="neg">-8.89%</td><td class="pos">+19.62%</td><td class="neg">-18.43%</td><td class="neg">-14.62%</td></tr><tr><td class="asset">S&amp;P 500</td><td>7,743.98</td><td class="pos">+0.28%</td><td class="neg">-0.17%</td><td class="pos">+0.78%</td><td class="pos">+4.12%</td><td class="pos">+12.91%</td><td class="pos">+12.38%</td></tr><tr><td class="asset">NASDAQ 100</td><td>29,813.16</td><td class="pos">+0.55%</td><td class="neg">-0.03%</td><td class="neg">-1.53%</td><td class="pos">+6.07%</td><td class="pos">+18.28%</td><td class="pos">+14.61%</td></tr><tr><td class="asset">VIX</td><td>16.91</td><td class="neg">-3.48%</td><td class="pos">+1.38%</td><td class="pos">+5.23%</td><td class="neg">-1.05%</td><td class="pos">+16.54%</td><td class="pos">+2.98%</td></tr><tr><td class="asset">EAFE (해외선진)</td><td>103.59</td><td class="pos">+0.66%</td><td class="neg">-0.10%</td><td class="neg">-1.87%</td><td class="pos">+0.21%</td><td class="pos">+6.75%</td><td class="pos">+8.24%</td></tr><tr><td class="asset">EM (신흥국)</td><td>62.52</td><td class="pos">+1.13%</td><td class="neg">-1.26%</td><td class="neg">-8.03%</td><td class="pos">+2.37%</td><td class="pos">+11.17%</td><td class="pos">+12.22%</td></tr></tbody></table>
+
+<div class="macro-line">환율 <strong>1,326.81</strong> (+0.15%) &middot; 美 10Y <strong>4.990%</strong> (-1.0bp) &middot; 美 2s10s <strong>+29bp</strong> (정상) &middot; WTI <strong>102.18</strong> (+2.28%)</div>
+
+<h2>② 시황 초안</h2>
+<p class="muted-note">기준: 직전 거래일 (20261029) 종가</p>
+<h3>미국 (Nasdaq 중심)</h3>
+<p class="takeaway">미국 증시는 FOMC 금리 동결 소화 속에 나스닥이 0.27% 오른 26,549.85로 보합권 마감했다.</p>
+<p>연준은 10/27~28 회의에서 인플레이션을 &#x27;높은 수준&#x27;으로 평가하면서도 기준금리를 동결했고, 리사 쿡 이사가 반대표를 던진 분열 결정이었다. 동결이 비둘기파로 해석되며 미 10년물 금리는 4.99%로 1bp 하락했고 달러는 약보합을 보였다. 다만 워시 의장이 내년 초 대차대조표 축소 논의를 예고하면서 장기금리 상단 부담은 남았다. WTI는 2.28% 급등한 102.18달러로 100달러선을 상회해 인플레이션 경계가 유지됐다. 연준이 AI 투자 붐의 붕괴 가능성을 정책 리스크로 다루고 있다는 보도가 나오며 기술주 밸류에이션 논쟁이 부각됐고, 다우는 0.19% 상승한 52,475.10으로 마감했다.</p>
+<h3>KOSPI</h3>
+<p class="takeaway">코스피는 반도체 대형주 강세에 힘입어 1.11% 오른 6,079.03으로 마감하며 6,000선을 지켰다.</p>
+<p>외국인이 2,836억원 순매수로 지수를 견인한 반면 기관은 5,345억원 순매도로 차익실현에 나섰고 개인은 2,423억원 순매수했다. SK하이닉스가 5.65%, SK스퀘어가 5.21%, 삼성전자가 1.76% 오르며 지수 상승분 대부분을 설명했다. 반면 LG에너지솔루션이 6.68%, 현대차가 1.52%, KB금융이 1.17% 하락하는 등 반도체 외 업종은 부진했다. 상승 종목 156개 대비 하락 종목 706개로 지수 상승과 달리 시장 폭은 좁았다. FOMC 비둘기 해석으로 원/달러 환율이 1,330원대 진입을 시도하며 외국인 수급에 우호적 환경이 조성됐다.</p>
+<h3>KOSDAQ</h3>
+<p class="takeaway">코스닥은 외국인과 기관의 동반 순매도에 1.2% 하락한 762.00으로 마감하며 코스피와 디커플링됐다.</p>
+<p>외국인이 724억원, 기관이 189억원 순매도했고 개인이 1,028억원 순매수로 매물을 받아냈다. 하락 종목 1,298개 대비 상승 종목 348개로 중소형주 전반에 매도 압력이 확산됐다. 대형 반도체로 수급이 쏠리면서 코스닥은 장 초반 767.78(-0.45%)로 하락 출발한 뒤 낙폭을 키웠다. 종목별로는 티앤이코리아가 91.83%, 서울바이오시스와 서울반도체가 각각 30%, 29.93% 급등해 상한가권에 안착했다. 반면 벡트로보틱스가 29.93%, 엘앤케이바이오가 18.38% 급락하며 개별 종목 변동성이 컸다.</p>
+
+<h2>③ 수급 · 업종 · 종목</h2>
+<p class="muted-note">기준: 20261029 마감</p>
+
+<h3>외국인·기관·개인 수급</h3>
+<table class="snapshot"><thead><tr><th class="asset">시장</th><th>외국인</th><th>기관</th><th>개인</th><th>방향</th></tr></thead><tbody><tr><td class="asset">KOSPI</td><td class="pos">+2,836</td><td class="neg">-5,345</td><td class="pos">+2,423</td><td class='neutral'>기관 매도 주도</td></tr><tr><td class="asset">KOSDAQ</td><td class="neg">-724</td><td class="neg">-189</td><td class="pos">+1,028</td><td class='neutral'>외국인+기관 동반 순매도</td></tr></tbody></table>
+<p class="muted-note">단위: 억원 · +순매수 / −순매도</p>
+
+<h3>업종 Top / Bottom</h3>
+<p><em>(업종 데이터 없음)</em></p>
+<h3>KOSPI 시총 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">종목</th><th>종가</th><th>%</th></tr></thead><tbody><tr><td class="asset">삼성전자</td><td>246,250</td><td class="pos">+1.76%</td></tr><tr><td class="asset">SK하이닉스</td><td>1,571,000</td><td class="pos">+5.65%</td></tr><tr><td class="asset">삼성전자우</td><td>190,900</td><td class="pos">+0.42%</td></tr><tr><td class="asset">SK스퀘어</td><td>969,000</td><td class="pos">+5.21%</td></tr><tr><td class="asset">삼성전기</td><td>1,298,000</td><td class="neg">-0.61%</td></tr><tr><td class="asset">LG에너지솔루션</td><td>363,500</td><td class="neg">-6.68%</td></tr><tr><td class="asset">삼성바이오로직스</td><td>1,363,000</td><td class="neg">-0.66%</td></tr><tr><td class="asset">현대차</td><td>291,500</td><td class="neg">-1.52%</td></tr><tr><td class="asset">삼성생명</td><td>280,000</td><td class="pos">+0.90%</td></tr><tr><td class="asset">KB금융</td><td>152,200</td><td class="neg">-1.17%</td></tr></tbody></table>
+
+<h3>KOSPI 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody><tr><td class="asset">광전자</td><td class="pos">+24.78%</td><td class="asset">서울식품우</td><td class="neg">-14.64%</td></tr><tr><td class="asset">씨티알모빌리티</td><td class="pos">+16.90%</td><td class="asset">한미글로벌</td><td class="neg">-10.21%</td></tr><tr><td class="asset">ACE SK하이닉스단일종목레버리지</td><td class="pos">+10.29%</td><td class="asset">SOL SK하이닉스선물단일종목인버스2X</td><td class="neg">-10.53%</td></tr><tr><td class="asset">미래에셋 레버리지 SK하이닉스 단일종목ETN</td><td class="pos">+11.13%</td><td class="asset">동양2우B</td><td class="neg">-9.90%</td></tr><tr><td class="asset">SOL SK하이닉스단일종목레버리지</td><td class="pos">+10.70%</td><td class="asset">인디에프</td><td class="neg">-8.98%</td></tr></tbody></table>
+
+<h3>KOSDAQ 상승·하락 상위</h3>
+<table class="snapshot"><thead><tr><th class="asset">상승</th><th>%</th><th class="asset">하락</th><th>%</th></tr></thead><tbody><tr><td class="asset">티앤이코리아</td><td class="pos">+91.83%</td><td class="asset">벡트로보틱스</td><td class="neg">-29.93%</td></tr><tr><td class="asset">서울바이오시스</td><td class="pos">+30.00%</td><td class="asset">엘앤케이바이오</td><td class="neg">-18.38%</td></tr><tr><td class="asset">파이온엑스</td><td class="pos">+29.96%</td><td class="asset">씨싸이트</td><td class="neg">-12.95%</td></tr><tr><td class="asset">서울반도체</td><td class="pos">+29.93%</td><td class="asset">앱튼</td><td class="neg">-13.22%</td></tr><tr><td class="asset">한울앤제주</td><td class="pos">+24.17%</td><td class="asset">빅웨이브로보틱스</td><td class="neg">-12.05%</td></tr></tbody></table>
+
+<h2>④ 매크로 컨텍스트</h2>
+<div class="context-grid"><div class="box"><h4>美 금리 · 스프레드</h4><ul><li>10Y: <strong>4.990%</strong></li><li>2Y: <strong>4.700%</strong></li><li>2s10s: <strong>+29bp</strong> (정상 우상향)</li><li>1주 -4bp / 1개월 -7bp</li></ul></div><div class="box"><h4>韓 금리 · 물가</h4><ul><li>한국 단기금리(FRED 할인율 대용): <strong>1.25%</strong> (2026-07-01)</li><li>한국 10Y: <strong>4.454%</strong> (2026-09-01)</li><li>한국 CPI YoY: <strong>0.15%</strong> <em>(기준 2024-03-01, lag 큼)</em></li><li>원/달러: <strong>1,326.81</strong> (1D +0.15%)</li></ul></div></div>
+
+<h2>⑤ 핵심 뉴스 5건</h2>
+<ol class="news-pick"><li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxNTFNHanJ3MTBjVnBzMDd2NTFYRTR1azVJNmdJbXpiYm8wd0phUHZfcVNBWE1ySUwtSnJsVldzdGxoMXZTd09FR1pPV1EwV2N2YkROMVcxUENTRTNVd2NfQUdiM3JReWNhTTdDVjNMZ1diU0NxSEN2M1l1THVaNUo3emVBU0pSRHFZWE1JcHY1VkliTU9SRjB2VDdlTUJVSHZod1ZnZW1SeW53MWIyNDNDSWk5WW5IczBETFdjakhzdVNXNVdzNFFQTEtmQzNBek5wWmZjLWRxSmI2N09DZTJn?oc=5">Fed votes in split decision to hold interest rates steady despite sticky inflation - Yahoo Finance</a></div><div class="news-summary">연준이 10/27~28 FOMC에서 기준금리를 동결. 인플레이션은 &#x27;높은 수준&#x27;으로 평가했고, 리사 쿡 이사가 반대표를 던진 분열 결정. 중간선거 전 마지막 회의.</div><div class="news-impact">→ 미 국채금리: 만기별 혼조, 달러: 약보합</div></li>
+<li><div class="news-head"><span class="bucket">금리/통화정책</span> <a class="news-title" href="https://news.google.com/rss/articles/CBMixwFBVV95cUxQaDZHdmRFaXBHQzZvWXZjZU8xOFRrT0Q1WGx2ekJuQ1hCTV9EbHdTOElZTERXemZwY1o0ZzRZUXR6aDNkM0tOejh1N201SmxqR29NSFE2Q0c5TlJMQ29pZGhvM0E5TVc0UjkyTFVNY1VONjl3WG5WOXJaRElkNEktODF4LXhkaF9YTW5kN01DYUFtcy1hclBQbXFSdk5aSGFJMG8yTWtLd2ZlTnY5Ylp4MmJmWldCNXVZekg5T3FwMEpmSVBCWDFV?oc=5">Fed&#x27;s policy committee to weigh balance sheet issues early next year, Warsh says - Reuters</a></div><div class="news-summary">워시 의장이 내년 초 FOMC에서 대차대조표 문제를 논의하겠다고 밝힘. 향후 금리결정 회의 횟수를 줄이는 등 FOMC 운영 방식 변경도 발표.</div><div class="news-impact">→ 미 장기국채금리: 대차대조표 논의 부각 시 상승 압력</div></li>
+<li><div class="news-head"><span class="bucket">환율</span> <a class="news-title" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBZM1hpMWlGdHVjOHhJNGtORmxsNk5ZN0dzVldob0p0RG1tREU1Mk9VM0lyX0J0aUJMZ1RWcVJZWEFnZW1VS00zNlJ4YW1xX00ySEhyQmwyRV8zMFNo?oc=5">[모닝 리포트] &quot;FOMC 비둘기 해석에 환율 하락, 1330원대 진입 시도&quot; - 뉴스핌</a></div><div class="news-summary">FOMC 동결이 비둘기파로 해석되며 원/달러 환율 하락. 뉴욕장에서 1340원 초반 거래됐고 국내장은 1342.0원 부근에서 1330원대 진입 시도.</div><div class="news-impact">→ 원/달러 환율: 하락(원화 강세), 외국인 수급: 우호적</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTFBWZnQ0eWdHWHhCb3A1cDNYb01YdHlycGhvaXV6MGQxNXNZS2JjOHUtVVoxem0yUThLdkpYMVBUd0FLNllHemZnWWMzZnozdERYSWVfUE5SLURNdw?oc=5">코스피, 반도체 대형주 강세 지속에 상승 출발…코스닥은 약세 - 한국경제</a></div><div class="news-summary">미 반도체 훈풍 속 코스피 6017.22(+0.08%) 개장, 외국인 매수로 6000선 상회. SK하이닉스 등 반도체 대형주 강세 지속. 코스닥은 767.78(-0.45%) 하락 출발.</div><div class="news-impact">→ 코스피 반도체 대형주: 상승, 코스닥 중소형주: 약세</div></li>
+<li><div class="news-head"><span class="bucket">반도체/AI</span> <a class="news-title" href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNVTdHYXBUMEV4enBnVGx4aC1OeHZXZktKYklMcWEwQmZIMi13QzcyU1hQeC15bXpWVE95Zm9IbDRvbzRvS1QtV2JiZTFuMmlpR3FhSHRTeFM3Y2c3QjJ1amM1b0VxWEMyYlhNbUxMajlLeG9ETGRjeU5ubmFuODVNdHZzN0JkRXFMUWNTSlhR?oc=5">The Fed&#x27;s new headache: An AI boom that turns to bust - Politico</a></div><div class="news-summary">연준이 AI 투자 붐의 붕괴 가능성을 새로운 정책 리스크로 다루고 있다는 보도. 금리 동결 회의와 맞물려 AI 주도 경기·자산가격 의존도가 쟁점으로 부각.</div><div class="news-impact">→ AI/반도체 밸류에이션: 하방 리스크 경계, 나스닥: 변동성 확대</div></li></ol>
+
+<h2>⑥ 카테고리 헤드라인 (Google News RSS)</h2>
+<h3>코스피</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5uNUZiTmhKdFVnbWlUQmI0eEYzc3NiZ2Q2bnVSUmxpaVJ6cDd6ZW5jbFpWYUU0NlJlbzF3eGgzMkdRcGlDMlk1OHBPa0EwZnZSSmpYZ25DN3k0NTBMR0xnOVJmTWlPVjN4emfSAW5BVV95cUxNR1JFa0RVVmVxRXdBMkV4V3ZncmQ0eF9LMHRoMDZIdTdTdmc3Q0NnNFcxaURrX1pWWlRtY19PVlp5SHV1cTZXazVPTVlLSXE2b21IcmVvRkxyTFJ4djZBWTh3Q05aTko2Mm5rZDhsdw?oc=5">삼전·하이닉스 무섭게 올랐다…코스피 6.63% 급등, 6000선 탈환 - 주간조선</a> — 주간조선</li><li><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9wRGlzX2JVakQ4aDdzSHUySWF0X1RWLUQxMEQtU2dfMy1wMk14ZXFqWE9mX1ljUjYyUElDelhSWWp0ZWpVVk1rR1U1dkdpeHNmYlAxR0xrRHFnZ2RxcEE?oc=5">코스피, AI 훈풍에 연일 상승세...오늘 증시는? - YTN</a> — YTN</li><li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9STWM3SC1TaklUMkJWbGN3d2w2dXpNM2FMQkJMczRBUWp6Z09iN0ItS1FoNHdzR2ZENURMNXNZcXo2NGFLc2NtNlJsMGFrcGM5SUZ1UUVPS3FLaEhrWW1PTdIBeEFVX3lxTE1JNFpWZ3dlcm9PNWRURl9nNlFSUHhOeXBteENOOW5oSFA4Mk4ySmxJT0o1V0hVMzdQczNVZVRCSjhwNVJ0clkyRVdsSTVvTF90VGZzWm14c0FiODhDOERvTmxSWktoWURsYlNSdl9oUjI2alI0RzFpMw?oc=5">[속보]코스피, 4.78포인트(0.08%) 오른 6017.22 개장 - 뉴시스</a> — 뉴시스</li><li><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9tT0lIRGxOdk5ERVRtcTFRRWh2a2JUQU04N2lfbm96Z0ZSTGdwZnIwMmFZb1JQUTBBeGdnaTJJLTFIVVpxamNDS2l0a0pJb0YwYlRmb3I5YVYxZkN0?oc=5">[AI MY 증시전망] 삼성전자 실적 발표 &#x27;주목&#x27;…코스피 상승 전망 - 뉴스핌</a> — 뉴스핌</li><li><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQRzUwczN0dFFHWDluc3pCb3FkSzlWdExJLWZKd2hlNlJlMUdGOHBmRm9NcGt5cWhMUHhIdFlQWFZ3US1qNUFSY2tpZTZiZU5FNks1NlEwYnN6MzRwbXZOSFpnNmx3X1VYRmxLaFVGQy03bzk4UHQ1RTJrYnRaQXM2Xw?oc=5">&quot;코스피 8100까지&quot;…내년 증시, 진짜 승부처는 2분기 - 이데일리</a> — 이데일리</li></ul>
+<h3>Federal Reserve</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPcHhyOWk0NW9KMUxVdWU1d015dG1YZmdWV2JsbGFRbTV5UFUxZUdENy10ZHl4M3FQakxWNW53enE3Um9IT3NCUUtDaDlkLWpXX0lpUWZPV214WURKVVdLcWtTczUzdjZiVm9HUFNzRmVSeUd2TzF2VDBpWlFvbzdyeWotdl9zOVAzaDhCZW9MQQ?oc=5">Federal Reserve leaves interest rates unchanged despite rising inflation - NBC News</a> — NBC News</li><li><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE1tMUlxMlhyZGowTmtxUW9oU1NrQjU1UzBWd0pobmpmdG83UHBURXhSSkgydEdTZnFJY2J2VFpJOGZGOWJlMGc5VEhxaW5EVmRYZ2NHZHJPZXhhV3NSazdDb0NpSWZMc3hBMnBYS210Nm5PNzRJTWc?oc=5">Fed meeting recap: Warsh says central bank will host fewer rate-setting meetings in future years - CNBC</a> — CNBC</li><li><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE14RjZmQWJVVVo4aUZXV2czTElmaWNwWEctaUhMU1pzTUtBV1lTSU9nNlZjM1h1OHZUMDRkd3oyOTVIOEkxdkVfaXFTdFhuY0JpRFdySDg2ZlRXdDBDTzN6VEg1S2hnczlnc1V2RmpLVWs1Sy02R3RHaE5B?oc=5">The Fed - October 27-28, 2026 FOMC Meeting - Federal Reserve (.gov)</a> — Federal Reserve (.gov)</li><li><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxONGlIQ19wM2oxdDZvTmVUSVFmSDNFVTY2ZGUzSlVMZFU2NHJ3alhfODMzYUFKYmE4M21aSG5zd2k1MVI2akpidHhGUXRwck43WFNZYU5mZmpRRzl2dDZES3VWTkxURW43UkZteGUxODZsMEcyRENWX2VJQVU4dVNPdFhRWGt1eUpBamtPcFhn?oc=5">Fed holds interest rates steady even as inflation remains stubborn - NPR</a> — NPR</li><li><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPaEkwMGl6T29kQlFSbU9EanZNX3VMdG5PcG9tWXh3cUQ0U0R5ZTFuUU1QRl9PWl9nd2l4bFpwWl9OOFFTS0VfSV9UcFR0VEtsRW9ld25admRIbkFQa292VTNWVV9xb2g3ZlQwZ2ZuNlVSQkNTQzhGN0RDSl9wZ0hDWi1fcGFTRnJHUTAzeEhUY1BZeVFJU1ZyaVFPdDkzNm9sVTVmcm9pSkxRWjlTOHRpSjlPNmxUb0pPaHBN?oc=5">Fed’s Rate Hold Sends Bond Yields in Different Directions - WSJ</a> — WSJ</li></ul>
+<h3>원달러 환율</h3>
+<ul class="rss-list"><li><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxONk5MMVp4N19Bc3haY1R6emotaVpmbGhIb2ViRXBTUVc0eG9mNmZhV1FuSGtOM1FKVGJNUHNQT3NlLTNGUVRFZWZzNVllWXAySzlGSmQwYlB3RHZ1VzlSOXlyMklMazhBQkxuamtBalFTcHhIOWZQZHJLR210UkMwVlJjVGNvUdIBmgFBVV95cUxNQ3lLcFVEbmNPQzlmdjVzSlBablJvYVh1MWhqNVJwZ1FxZHlUeGxKdnZRcm5EWkhNcmtNTXNnZ2xJUmJ4Z3J2NVoyN2FCRGtFazBnSFR4MlExXy1GVVN6NFd0LUdFd3ZZdlgxcGx0ckYxMzJuWXNRX1E3QWZvOXgxVE5ZNDdvQmNMYi1oNlVRQ29TeHBXdGZFUVFR?oc=5">원·달러 환율, 14원 오른 1337.7원 - Chosunbiz</a> — Chosunbiz</li><li><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBOZ3dvVVBqQV9aVGZsdlk0dXo0Y0hDbUhhRGE0ZjFlU3l5VEVDZ0dNNm14eDJyNVlWcmVqVlR2V0dkbGZKVXIyZTBONkdYcmJpV3R6NnBHalNrS1XSAWBBVV95cUxNWVhTSFVWUkxINlVCb2hpN1RTaHhGcmhMWG1fcXlyVlFOMWpwY0hYZ2tSeUlsYW9Eb3daNDNXTk1JZndYcjFuSWp6c1dZb3NYREFEWXQwUVdwYThUTHFCeEc?oc=5">[외환] 원/달러 환율 14.0원 오른 1,337.7원(15:30 기준가) - 연합뉴스</a> — 연합뉴스</li><li><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE93M1h6SUhDYnRsN0dpNFRkQU5hOEI1Zzc2MXVwbnlWQkdpS0dPTTJiQTlBU3pJQXRXWGlqQjFVMk1tM2RJR0NWc2U1S1VtZVJhalBKMUlZSEJoR2pkOUg4eDdkS2JMdHM?oc=5">’1,310원대 근접’ 원·달러 환율…명목실효환율 2년 만에 최고 - 연합뉴스TV</a> — 연합뉴스TV</li><li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBXcjhnSjBjMG1jbVp2ay1ZeGhOMDU1MThia1RUdEw0MnVqRkE0V1lGdnVkRWVNZzl5VG04TEl6VFF3LUQxdkkycVFBeDM2T2tsaUZhQjZwT0NoN1FLZ01sUA?oc=5">원·달러 환율, 14원 뛰어…FOMC 앞두고 외환시장 긴장감(상보) - 아시아경제</a> — 아시아경제</li><li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB6ZHRWVU01RUdwdlU2NWxNTlFka3B6Z0EybS1tWDlRU3dfaEdQcVRNMTFSN0VkOHRYS3Foa1p5NFVaQkgyamtwcFA5UndfMzVXeVNDTWZySmVYeF9uNFZN?oc=5">원·달러 환율, 1342.0원…달러, 美 연준 금리동결에 약보합 - 조세일보</a> — 조세일보</li></ul>
+
+<div class='footer'>본 리포트는 자동 수집 데이터(KRX/yfinance/FRED/Google News/saveticker) + LLM 초안 기반이며 투자 권유가 아닙니다. 최종 해석은 사람이 검수합니다.</div>
+</body>
+</html>
